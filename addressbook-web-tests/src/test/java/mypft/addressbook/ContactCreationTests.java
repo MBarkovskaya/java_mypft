@@ -26,7 +26,7 @@ public class ContactCreationTests {
         sendControlData("firstname", "Mariya");
         sendControlData("lastname", "Barkovskaya");
         sendControlData("address", "Таганрог");
-        sendControlData("home", "Таганрог");
+        sendControlData("home", "12345");
         sendControlData("address", "Таганрог");
         sendControlData("email", "mariya.barkovskaya@gmail.com");
         submitContactCreation();
