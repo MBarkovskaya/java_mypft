@@ -3,6 +3,7 @@ package mypft.addressbook.appmanager;
 import mypft.addressbook.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class GroupHelper extends BaseHelper {
 
@@ -37,4 +38,8 @@ public class GroupHelper extends BaseHelper {
     public void selectGroup() {
         click(By.name("selected[]"));
     }
+
+    public void selectGroupCombo() {
+        click(By.xpath("//form[@id='right']/select//option[4]"));
+        }
 }
