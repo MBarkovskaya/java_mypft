@@ -12,8 +12,8 @@ public class NavigationHelper extends BaseHelper {
     public void gotoGroupPage() {
        click(By.linkText("groups"));
     }
-    public void gotoContactPage() {
 
+    public void gotoContactPage() {
         click(By.linkText("add new"));
     }
     public void gotoHomePage() {

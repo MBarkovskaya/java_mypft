@@ -42,4 +42,12 @@ public class GroupHelper extends BaseHelper {
     public void selectGroupCombo() {
         click(By.xpath("//form[@id='right']/select//option[4]"));
         }
+
+    public void initGroupModification() {
+        click(By.name("edit"));
+    }
+
+    public void submitGroupModification() {
+        click(By.name("update"));
+    }
 }
