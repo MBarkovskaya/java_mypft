@@ -39,7 +39,7 @@ public class GroupHelper extends BaseHelper {
   }
 
   public void selectGroupCombo() {
-    click(By.xpath("//form[@id='right']/select//option[4]"));
+    click(By.xpath("//form[@id='right']/select//option['Contact Group Test']"));
   }
 
   public void initGroupModification() {

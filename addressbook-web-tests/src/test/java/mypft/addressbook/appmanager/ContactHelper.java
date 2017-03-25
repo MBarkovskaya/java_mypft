@@ -57,11 +57,11 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void selectGroupContact() {
-    click(By.xpath("//div[@class='right']//select[normalize-space(.)='test1 test1 test1 test1']//option[2]"));
+    click(By.xpath("//div[@class='right']//select[normalize-space(.)=*]//option[1]"));
   }
 
-  public void returnToSelectedGropePage() {
-    click(By.linkText("group page \"test1\""));
+  public void returnToSelectedGropePage(String group) {
+    click(By.linkText("group page \"" + group + "\""));
   }
 
   public void removeContactFromGroup() {
@@ -81,4 +81,14 @@ public class ContactHelper extends BaseHelper {
   }
 
 
+  public void createContact(ContactData contactData, boolean b) {
+    initContactCreation();
+    fillContactForm(contactData, b);
+    submitContactCreation();
+    returnToContactPage();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
+  }
 }
