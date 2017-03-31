@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="216.09375" y="270.0">mypft.addressbook.tests.ContactCreationTests</node>
+    <node x="8.093749999999972" y="270.0">mypft.addressbook.tests.AddContactToGroupTests</node>
+    <node x="316.6770833333333" y="160.0">mypft.addressbook.model.ContactData</node>
+    <node x="0.0" y="160.0">mypft.addressbook.model.GroupData</node>
+    <node x="177.703125" y="160.0">mypft.addressbook.tests.TestBase</node>
+    <node x="400.09375" y="270.0">mypft.addressbook.tests.ContactDeletionTests</node>
+    <node x="850.453125" y="8.0">mypft.addressbook.appmanager.ContactHelper</node>
+    <node x="658.203125" y="86.0">mypft.addressbook.appmanager.ApplicationManager</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="mypft.addressbook.appmanager.ApplicationManager" target="mypft.addressbook.appmanager.ContactHelper">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="mypft.addressbook.tests.ContactCreationTests" target="mypft.addressbook.tests.TestBase">
+      <point x="-41.0" y="-15.0" />
+      <point x="257.09375" y="230.0" />
+      <point x="225.703125" y="230.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="mypft.addressbook.tests.ContactCreationTests" target="mypft.addressbook.model.ContactData">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="mypft.addressbook.tests.AddContactToGroupTests" target="mypft.addressbook.tests.TestBase">
+      <point x="0.0" y="-15.0" />
+      <point x="102.09374999999997" y="230.0" />
+      <point x="193.703125" y="230.0" />
+      <point x="-32.0" y="15.0" />
+    </edge>
+    <edge source="mypft.addressbook.tests.ContactDeletionTests" target="mypft.addressbook.tests.TestBase">
+      <point x="-40.75" y="-15.0" />
+      <point x="440.84375" y="220.0" />
+      <point x="257.703125" y="220.0" />
+      <point x="32.0" y="15.0" />
+    </edge>
+    <edge source="mypft.addressbook.tests.ContactDeletionTests" target="mypft.addressbook.model.ContactData">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="mypft.addressbook.tests.TestBase" target="mypft.addressbook.appmanager.ApplicationManager">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="mypft.addressbook.tests.AddContactToGroupTests" target="mypft.addressbook.model.ContactData">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="mypft.addressbook.tests.AddContactToGroupTests" target="mypft.addressbook.model.GroupData">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="437.0" y="356.5" />
+  <SelectedNodes>
+    <node>mypft.addressbook.appmanager.ContactHelper</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>Tests</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
