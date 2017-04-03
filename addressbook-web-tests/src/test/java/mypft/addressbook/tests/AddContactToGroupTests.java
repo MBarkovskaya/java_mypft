@@ -18,7 +18,7 @@ public class AddContactToGroupTests extends TestBase {
       app.getContactHelper().createContact(new ContactData("Mariya", "Barkovskaya", "Taganrog", "12345", GROUP, null, "mariya.barkovskaya@gmail.com"),
               true);
     }
-    app.getContactHelper().selectContact();
+    app.getContactHelper().selectContact(0);
     app.getContactHelper().selectGroupContact();
     app.getContactHelper().initAddContactToGroup();
     app.getContactHelper().returnToSelectedGropePage(GROUP);

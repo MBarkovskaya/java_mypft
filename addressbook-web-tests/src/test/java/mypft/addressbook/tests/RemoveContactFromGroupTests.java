@@ -20,11 +20,11 @@ public class RemoveContactFromGroupTests extends TestBase {
               true);
     }
 
-    app.getContactHelper().selectContact();
+    app.getContactHelper().selectContact(0);
     app.getContactHelper().initAddContactToGroup();
     app.getContactHelper().returnToSelectedGropePage(GROUP);
 
-    app.getContactHelper().selectContact();
+    app.getContactHelper().selectContact(0);
     app.getContactHelper().removeContactFromGroup();
     app.getContactHelper().returnToSelectedGropePage(GROUP);
   }

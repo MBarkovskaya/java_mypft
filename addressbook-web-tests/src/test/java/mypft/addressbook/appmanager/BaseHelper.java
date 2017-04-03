@@ -1,9 +1,7 @@
 package mypft.addressbook.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.Select;
 
 public class BaseHelper {
   protected WebDriver wd;
@@ -36,12 +34,39 @@ public class BaseHelper {
     }
   }
 
+  public String getElementText(String name) {
+
+    WebElement element = getElement(By.name(name));
+    if (element != null) {
+      Select select = new Select(element);
+      return select.getFirstSelectedOption().getText();
+    } else {
+      return "";
+    }
+  }
+
+  public void selectOption(String elementName, String option)  {
+    WebElement element = getElement(By.name(elementName));
+    if (element != null) {
+      Select select = new Select(element);
+      select.selectByVisibleText(option);
+    }
+  }
+
   protected boolean isElementPresent(By locator) {
     try {
       wd.findElement(locator);
       return true;
     } catch (NoSuchElementException ex) {
       return false;
+    }
+  }
+
+  protected WebElement getElement(By locator) {
+    try {
+      return wd.findElement(locator);
+    } catch (NoSuchElementException ex) {
+      return null;
     }
   }
 }
