@@ -7,14 +7,15 @@ import org.testng.annotations.Test;
 public class RemoveContactFromGroupTests extends TestBase {
 
   private final static String GROUP = "Contact Group Test";
-  @Test
+
+  @Test(enabled = false)
   public void testRemoveContactFromGroup() {
-    app.getNavigationHelper().gotoGroupPage();
-    if (! app.getGroupHelper().isThereAGroup()) {
-      app.getGroupHelper().createGroup(new GroupData(GROUP, null, null));
+    app.goTo().GroupPage();
+    if (! app.group().isThereAGroup()) {
+      app.group().create(new GroupData().withName(GROUP));
     }
-    app.getNavigationHelper().gotoHomePage();
-    app.getGroupHelper().selectGroupCombo();
+    app.goTo().gotoHomePage();
+    app.group().selectGroupCombo();
     if (!app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new ContactData("Mariya", "Barkovskaya", "Taganrog", "12345", GROUP, null, "mariya.barkovskaya@gmail.com"),
               true);
