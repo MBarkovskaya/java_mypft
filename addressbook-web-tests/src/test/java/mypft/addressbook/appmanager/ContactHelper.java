@@ -1,6 +1,8 @@
 package mypft.addressbook.appmanager;
 
 import mypft.addressbook.model.ContactData;
+import mypft.addressbook.model.Contacts;
+import mypft.addressbook.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +10,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends BaseHelper {
 
@@ -26,11 +30,12 @@ public class ContactHelper extends BaseHelper {
     type(By.name("lastname"), contactData.getLastname());
     type(By.name("address"), contactData.getAddress());
     type(By.name("home"), contactData.getHome());
-    type(By.name("address2"), contactData.getAddress2());
     type(By.name("email"), contactData.getEmail());
 
     if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      if (contactData.getGroup() != null) {
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
@@ -52,29 +57,29 @@ public class ContactHelper extends BaseHelper {
     wd.switchTo().alert().accept();
   }
 
-  public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector(String.format("input[value ='%s']", id))).click();
   }
 
   public void initAddContactToGroup() {
     click(By.name("add"));
   }
 
-  public void selectGroupContact() {
-    click(By.xpath("//div[@class='right']//select[normalize-space(.)='test1 test1']//option[1]"));
+
+  public void selectGroupComboById(int id) {
+  wd.findElement(By.xpath(String.format("//div[@class='right']//select[@name='to_group']//option[@value='%s']", id))).click();
+  }
+
+  public void selectContactGroupById(int id) {
+    wd.findElement(By.xpath(String.format("//form[@id='right']//select[@name='group']//option[@value='%s']", id))).click();
   }
 
   public void returnToSelectedGropePage(String group) {
     click(By.linkText("group page \"" + group + "\""));
   }
 
-  public void removeContactFromGroup() {
-    click(By.name("remove"));
-  }
-
-  public void initContactModification(int index) {
-//    wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[" + (index + 1) + "]/td[8]/a/img")).get(index).click();
-    click(By.xpath("//table[@id='maintable']/tbody/tr[" + (index + 2) + "]/td[8]/a/img"));
+  public void initContactModification(int id) {
+    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
   }
 
   public void submitContactModification() {
@@ -85,28 +90,62 @@ public class ContactHelper extends BaseHelper {
     click(By.linkText("home page"));
   }
 
+  public void selectContactAll() {
+    wd.findElement(By.xpath(String.format("//form[@id='right']//select[@name='group']//option[@value='']"))).click();
+  }
 
-  public void createContact(ContactData contactData, boolean creation) {
+  public void create(ContactData contactData, boolean creation) {
     initContactCreation();
     fillContactForm(contactData, creation);
     submitContactCreation();
     returnToContactPage();
   }
 
+  public void modify(ContactData contact) {
+    selectContactById(contact.getId());
+    initContactModification(contact.getId());
+    fillContactForm(contact, false);
+    submitContactModification();
+    returnToHomePage();
+  }
+
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
+    deleteSelectedContact();
+  }
+
+  public void addToGroup(int groupId, int contactId, String groupName) {
+    selectContactById(contactId);
+    selectGroupComboById(groupId);
+    initAddContactToGroup();
+    returnToSelectedGropePage(groupName);
+  }
+
+  public void removeFromGroup(int contactId) {
+    selectContactById(contactId);
+    click(By.name("remove"));
+  }
+
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public List<ContactData> getContactList() {
-    List<ContactData> rows = new ArrayList<>();
+  public Contacts all() {
+    Contacts rows = new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
       String Firstname = element.findElement(By.xpath(".//td[3]")).getText();
       String Lastname = element.findElement(By.xpath(".//td[2]")).getText();
+      String Address = element.findElement(By.xpath(".//td[4]")).getText();
+      String Home = element.findElement(By.xpath(".//td[6]")).getText();
+      String Email = element.findElement(By.xpath(".//td[5]")).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      ContactData row = new ContactData(id, Firstname, Lastname, "Taganrog", null, "test1", null, null);
-      rows.add(row);
+      rows.add(new ContactData().withId(id).withFirstname(Firstname).withLastname(Lastname).withAddress(Address).withHome(Home).withEmail(Email));
     }
     return rows;
   }
+
 }
+
+
+

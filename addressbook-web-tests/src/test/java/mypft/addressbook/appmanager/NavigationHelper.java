@@ -17,14 +17,14 @@ public class NavigationHelper extends BaseHelper {
     click(By.linkText("groups"));
   }
 
-  public void gotoContactPage() {
+  public void ContactPage() {
     if (isElementPresent(By.id("maintable"))) {
       return;
     }
     click(By.linkText("add new"));
   }
 
-  public void gotoHomePage() {
+  public void HomePage() {
     click(By.linkText("home"));
   }
 

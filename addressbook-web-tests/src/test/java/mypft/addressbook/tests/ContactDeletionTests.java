@@ -1,28 +1,34 @@
 package mypft.addressbook.tests;
 
 import mypft.addressbook.model.ContactData;
-import org.testng.Assert;
+import mypft.addressbook.model.Contacts;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.List;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class ContactDeletionTests extends TestBase {
 
-  @Test(enabled = false)
-  public void testContactDeletion() throws InterruptedException {
-    app.goTo().gotoHomePage();
-    if (!app.getContactHelper().isThereAContact()) {
-      app.getContactHelper().createContact(new ContactData("Mariya", "Barkovskaya", "Taganrog", "12345", "test1", null, "mariya.barkovskaya@gmail.com"),
-                      true);
+  @BeforeMethod
+  public void ensurePreconditions() {
+    app.goTo().HomePage();
+    if (app.contact().all().size() == 0) {
+      app.contact().create(new ContactData()
+                      .withFirstname("Mariya").withLastname("Barkovskaya").withAddress("Taganrog").withHome("12345").withGroup("test1").withEmail("mariya.barkovskaya@gmail.com"),
+              true);
     }
-    List<ContactData> before = app.getContactHelper().getContactList();
-    app.getContactHelper().selectContact(before.size() - 1);
-    app.getContactHelper().deleteSelectedContact();
-    List<ContactData> after = app.getContactHelper().getContactList();
-    Assert.assertEquals(after.size(), before.size() - 1);
+  }
 
-    before.remove(before.size() - 1);
-    Assert.assertEquals(before, after);
+  @Test
+  public void testContactDeletion() throws InterruptedException {
+    Contacts before = app.contact().all();
+    ContactData deletedContact = before.iterator().next();
+    app.contact().delete(deletedContact);
+    Contacts after = app.contact().all();
+    assertEquals(after.size(), before.size() - 1);
+    assertThat(after, equalTo(before.without(deletedContact)));
   }
 
 }
