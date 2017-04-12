@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
 
 public class AddContactToGroupTests extends TestBase {
   private final static String GROUP = "Contact Group Test";
@@ -24,7 +23,7 @@ public class AddContactToGroupTests extends TestBase {
     groupId = groups.stream().mapToInt(GroupData::getId).max().getAsInt();
     app.goTo().HomePage();
     contact = new ContactData()
-                    .withFirstname("Sofiya").withLastname("Barkovskaya").withAddress("Taganrog").withHome("12345").withEmail("mariya.barkovskaya@gmail.com");
+                    .withFirstname("Sofiya").withLastname("Barkovskaya").withAddress("Taganrog").withHomePhone("9612345").withMobilePhone("+22").withWorkPhone("22-212").withEmail("mariya.barkovskaya@gmail.com");
     app.contact().create(contact, true);
     Contacts contacts = app.contact().all();
     contact.withId(contacts.stream().mapToInt(ContactData::getId).max().getAsInt());
@@ -33,8 +32,8 @@ public class AddContactToGroupTests extends TestBase {
   @Test
   public void testAddContactToGroup() {
     app.contact().addToGroup(groupId, contact.getId(), GROUP);
+    assertThat(app.contact().count(), equalTo(1));
     Contacts after = app.contact().all();
-    assertEquals(after.size(), 1);
     assertThat(after.iterator().next(), equalTo(contact));
   }
 

@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
 
 public class ContactDeletionTests extends TestBase {
 
@@ -16,7 +15,7 @@ public class ContactDeletionTests extends TestBase {
     app.goTo().HomePage();
     if (app.contact().all().size() == 0) {
       app.contact().create(new ContactData()
-                      .withFirstname("Mariya").withLastname("Barkovskaya").withAddress("Taganrog").withHome("12345").withGroup("test1").withEmail("mariya.barkovskaya@gmail.com"),
+                      .withFirstname("Mariya").withLastname("Barkovskaya").withAddress("Taganrog").withHomePhone("9612345").withMobilePhone("+22").withWorkPhone("22-212").withGroup("test1").withEmail("mariya.barkovskaya@gmail.com"),
               true);
     }
   }
@@ -26,8 +25,8 @@ public class ContactDeletionTests extends TestBase {
     Contacts before = app.contact().all();
     ContactData deletedContact = before.iterator().next();
     app.contact().delete(deletedContact);
+    assertThat(app.contact().count(), equalTo(before.size() - 1));
     Contacts after = app.contact().all();
-    assertEquals(after.size(), before.size() - 1);
     assertThat(after, equalTo(before.without(deletedContact)));
   }
 

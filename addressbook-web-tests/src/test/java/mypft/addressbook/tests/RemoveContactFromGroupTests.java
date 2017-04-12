@@ -7,6 +7,8 @@ import mypft.addressbook.model.Groups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertEquals;
 
 public class RemoveContactFromGroupTests extends TestBase {
@@ -23,7 +25,7 @@ public class RemoveContactFromGroupTests extends TestBase {
     groupId = groups.stream().mapToInt(GroupData::getId).max().getAsInt();
     app.goTo().HomePage();
     contact = new ContactData()
-            .withFirstname("Sofiya").withLastname("Barkovskaya").withAddress("Taganrog").withHome("12345").withEmail("mariya.barkovskaya@gmail.com");
+            .withFirstname("Sofiya").withLastname("Barkovskaya").withAddress("Taganrog").withHomePhone("9612345").withMobilePhone("+22").withWorkPhone("22-212").withEmail("mariya.barkovskaya@gmail.com");
     app.contact().create(contact, true);
     Contacts contacts = app.contact().all();
     contact.withId(contacts.stream().mapToInt(ContactData::getId).max().getAsInt());
