@@ -3,6 +3,7 @@ package mypft.addressbook.appmanager;
 import mypft.addressbook.model.ContactData;
 import mypft.addressbook.model.Contacts;
 import mypft.addressbook.model.GroupData;
+import mypft.addressbook.model.Groups;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -98,6 +99,7 @@ public class ContactHelper extends BaseHelper {
     initContactCreation();
     fillContactForm(contactData, creation);
     submitContactCreation();
+    contactCach = null;
     returnToContactPage();
   }
 
@@ -106,32 +108,41 @@ public class ContactHelper extends BaseHelper {
     initContactModification(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
+    contactCach = null;
     returnToHomePage();
   }
 
   public void delete(ContactData contact) {
     selectContactById(contact.getId());
     deleteSelectedContact();
+    contactCach = null;
   }
 
   public void addToGroup(int groupId, int contactId, String groupName) {
     selectContactById(contactId);
     selectGroupComboById(groupId);
     initAddContactToGroup();
+    contactCach = null;
     returnToSelectedGropePage(groupName);
   }
 
   public void removeFromGroup(int contactId) {
     selectContactById(contactId);
     click(By.name("remove"));
+    contactCach = null;
   }
 
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
 
+  private Contacts contactCach = null;
+
   public Contacts all() {
-    Contacts rows = new Contacts();
+    if (contactCach !=null) {
+      return new Contacts(contactCach);
+    }
+    contactCach = new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
       String Firstname = element.findElement(By.xpath(".//td[3]")).getText();
@@ -140,9 +151,9 @@ public class ContactHelper extends BaseHelper {
       String Home = element.findElement(By.xpath(".//td[6]")).getText();
       String Email = element.findElement(By.xpath(".//td[5]")).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      rows.add(new ContactData().withId(id).withFirstname(Firstname).withLastname(Lastname).withAddress(Address).withHome(Home).withEmail(Email));
+      contactCach.add(new ContactData().withId(id).withFirstname(Firstname).withLastname(Lastname).withAddress(Address).withHome(Home).withEmail(Email));
     }
-    return rows;
+    return new Contacts(contactCach);
   }
 
 }
