@@ -19,7 +19,7 @@ public class ContactDetailsTests extends TestBase {
     app.contact().selectContactAll();
     if (app.contact().all().size() == 0) {
       app.contact().create(new ContactData()
-                      .withFirstname("Mariya").withLastname("Barkovskaya").withAddress("Taganrog\nstreet Karantinnaya")
+                      .withFirstname("Mariya").withLastname("(Barkovskaya)").withAddress("Taganrog\nstreet Karantinnaya")
                       .withHomePhone("9612345").withMobilePhone("+22").withWorkPhone("22-212").withEmail("mariya.barkovskaya@gmail.com"),
               true);
     }
@@ -33,20 +33,20 @@ public class ContactDetailsTests extends TestBase {
   }
 
   private String mergeContact(ContactData contact) {
-    return Stream.of(contact.getFirstname() + "" + contact.getLastname(), multiLineStringToString(contact.getAddress()),
+    return Stream.of(cleaned(contact.getFirstname() + "" + contact.getLastname()), multiLineStringToString(contact.getAddress()),
             multiLineStringToString(contact.getAllPhones()), multiLineStringToString(contact.getAllEmails()))
             .filter((s) -> !s.equals("")).collect(Collectors.joining(";"));
   }
 
   public static String phoneCleaned(String phone) {
-    return phone.replaceAll("^(?:[HMW]): (.*)", "$1").replaceAll("\\s", "").replaceAll("[-()]", "");
+    return phone.replaceAll("^(?:[HMW]): (.*)", "$1").replaceAll("[\\s-()]", "");
   }
 
   private static String multiLineStringToString(String multiline) {
-    return Arrays.stream(multiline.split("\n")).filter(s -> !s.equals("")).map(ContactDetailsTests::mainCleaned).collect(Collectors.joining(";"));
+    return Arrays.stream(multiline.split("\n")).filter(s -> !s.equals("")).map(ContactDetailsTests::cleaned).collect(Collectors.joining(";"));
   }
 
-  private static String mainCleaned(String phone) {
-    return phone.replaceAll("[-()]", "").replaceAll("\\s", "");
+  private static String cleaned(String str) {
+    return str.replaceAll("[-()\\s]", "");
   }
 }

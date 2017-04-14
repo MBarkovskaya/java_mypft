@@ -1,5 +1,9 @@
 package mypft.addressbook.model;
 
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
+
 public class ContactData {
 
   private int id = Integer.MAX_VALUE;
@@ -16,6 +20,7 @@ public class ContactData {
   private String allPhones;
   private String allEmails;
 
+
   public String getAllEmails() {
     return allEmails;
   }
@@ -24,7 +29,7 @@ public class ContactData {
     return id;
   }
 
-  public String getFrstname() {
+  public String getFirstname() {
     return firstname;
   }
 
@@ -88,16 +93,6 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withEmail2(String email2) {
-    this.email2 = email2;
-    return this;
-  }
-
-  public ContactData withEmail3(String email3) {
-    this.email3 = email3;
-    return this;
-  }
-
   public ContactData withHomePhone(String homePhone) {
     this.homePhone = homePhone;
     return this;
@@ -125,6 +120,16 @@ public class ContactData {
 
   public ContactData withEmail(String email) {
     this.email = email;
+    return this;
+  }
+
+  public ContactData withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+
+  public ContactData withEmail3(String email3) {
+    this.email3 = email3;
     return this;
   }
 
@@ -159,5 +164,6 @@ public class ContactData {
   public String toString() {
     return "ContactData{" + "id=" + id + ", firstname='" + firstname + '\'' + ", lastname='" + lastname + '\'' + '}';
   }
+
 
 }

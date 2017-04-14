@@ -2,13 +2,16 @@ package mypft.addressbook.appmanager;
 
 import mypft.addressbook.model.ContactData;
 import mypft.addressbook.model.Contacts;
+import mypft.addressbook.tests.ContactDetailsTests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ContactHelper extends BaseHelper {
 
@@ -22,7 +25,7 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
-    type(By.name("firstname"), contactData.getFrstname());
+    type(By.name("firstname"), contactData.getFirstname());
     type(By.name("lastname"), contactData.getLastname());
     type(By.name("address"), contactData.getAddress());
     type(By.name("home"), contactData.getHomePhone());
@@ -65,7 +68,7 @@ public class ContactHelper extends BaseHelper {
 
 
   public void selectGroupComboById(int id) {
-  wd.findElement(By.xpath(String.format("//div[@class='right']//select[@name='to_group']//option[@value='%s']", id))).click();
+    wd.findElement(By.xpath(String.format("//div[@class='right']//select[@name='to_group']//option[@value='%s']", id))).click();
   }
 
   public void selectContactGroupById(int id) {
@@ -135,12 +138,13 @@ public class ContactHelper extends BaseHelper {
   }
 
   public int count() {
-    return wd.findElements(By.name("selected[]")).size();}
+    return wd.findElements(By.name("selected[]")).size();
+  }
 
   private Contacts contactCache = null;
 
   public Contacts all() {
-    if (contactCache !=null) {
+    if (contactCache != null) {
       return new Contacts(contactCache);
     }
     contactCache = new Contacts();
@@ -178,6 +182,18 @@ public class ContactHelper extends BaseHelper {
 
   private void initContactModificationById(int id) {
     wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s", id))).click();
+  }
+
+  public String infoFromDetailsForm(int contactId) {
+    initContactDataById(contactId);
+    String[] allData = wd.findElement(By.xpath("//*[@id='content']")).getText().split("\n");
+    wd.navigate().back();
+    return Arrays.stream(allData)
+            .filter((s) -> !s.equals("")).map(ContactDetailsTests::phoneCleaned).collect(Collectors.joining(";"));
+  }
+
+  private void initContactDataById(int id) {
+    wd.findElement(By.cssSelector(String.format("a[href='view.php?id=%s", id))).click();
   }
 }
 
