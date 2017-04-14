@@ -33,13 +33,14 @@ public class ContactDetailsTests extends TestBase {
   }
 
   private String mergeContact(ContactData contact) {
-  return Stream.of(cleaned(contact.getFirstname() + "" + contact.getLastname()), multiLineStringToString(contact.getAddress()),
-          multiLineStringToString(contact.getAllPhones()), multiLineStringToString(contact.getAllEmails()))
-          .filter((s) -> !s.equals("")).collect(Collectors.joining(";"));
-}
+    ContactData editcontact = app.contact().phoneEditForm(contact.getId());
+    return Stream.of(cleaned(contact.getFirstname() + "" + contact.getLastname()), multiLineStringToString(contact.getAddress()), editcontact.getHomePhone(),
+            editcontact.getMobilePhone(), editcontact.getWorkPhone(), multiLineStringToString(contact.getAllEmails()))
+            .filter((s) -> !s.equals("")).map(ContactDetailsTests::phoneCleaned).collect(Collectors.joining(";"));
+  }
 
   public static String phoneCleaned(String phone) {
-    return phone.replaceAll("^(?:[HMW]): (.*)", "$1").replaceAll("[\\s-()]", "");
+    return phone.replaceAll("[\\s-()]", "");
   }
 
   private static String multiLineStringToString(String multiline) {
