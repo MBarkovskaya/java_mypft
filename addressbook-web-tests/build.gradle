@@ -9,4 +9,5 @@ dependencies {
     compile 'org.seleniumhq.selenium:selenium-java:2.53.1'
     compile 'org.hamcrest:java-hamcrest:2.0.0.0'
     compile 'com.beust:jcommander:1.64'
+    compile 'com.thoughtworks.xstream:xstream:1.4.9'
 }

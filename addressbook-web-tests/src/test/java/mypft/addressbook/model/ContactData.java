@@ -1,12 +1,16 @@
 package mypft.addressbook.model;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.openqa.selenium.WebElement;
 
 import java.io.File;
 import java.util.List;
 
-public class ContactData {
+@XStreamAlias("contact")
 
+public class ContactData {
+  @XStreamOmitField
   private int id = Integer.MAX_VALUE;
   private String firstname;
   private String lastname;
