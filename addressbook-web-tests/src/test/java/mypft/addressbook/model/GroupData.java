@@ -1,15 +1,19 @@
 package mypft.addressbook.model;
 
+import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 @XStreamAlias("group")
 
 public class GroupData {
-@XStreamOmitField
+  @XStreamOmitField
   private int id = Integer.MAX_VALUE;
+  @Expose
   private String name;
+  @Expose
   private String header;
+  @Expose
   private String footer;
 
   public int getId() {
@@ -71,7 +75,7 @@ public class GroupData {
     this.footer = footer;
     return this;
   }
-  
+
   @Override
   public String toString() {
     return "GroupData{" + "id='" + id + '\'' + ", name='" + name + '\'' + '}';
