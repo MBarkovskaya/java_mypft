@@ -1,10 +1,14 @@
 package mypft.addressbook.tests;
 
 import mypft.addressbook.model.ContactData;
+import mypft.addressbook.model.Contacts;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -13,21 +17,29 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactDetailsTests extends TestBase {
 
-  @BeforeMethod
-  public void ensurePreconditions() {
-    app.goTo().HomePage();
-    app.contact().selectContactAll();
-    if (app.contact().all().size() == 0) {
-      app.contact().create(new ContactData()
-                      .withFirstname("Mariya").withLastname("(Barkovskaya)").withAddress("Taganrog\nstreet Karantinnaya")
-                      .withHomePhone("9612345").withMobilePhone("+22").withWorkPhone("22-212").withEmail("mariya.barkovskaya@gmail.com"),
-              true);
-    }
+  @DataProvider
+  public Iterator<Object[]> validContacts() throws IOException {
+    return loader.validContacts();
   }
 
-  @Test
-  public void testContactPreview() {
-    ContactData contact = app.contact().all().iterator().next();
+  @DataProvider
+  public Iterator<Object[]> validContactsFromJson() throws IOException {
+    return loader.validContactsFromJson();
+  }
+
+  @BeforeMethod
+  public void ensurePreconditions(Object[] args) {
+
+    app.goTo().HomePage();
+      app.contact().create((ContactData) args[0], true);
+  }
+
+  @Test(dataProvider = "validContactsFromJson")
+  public void testContactPreview(ContactData contact) {
+    app.goTo().HomePage();
+    app.contact().selectContactAll();
+    Contacts contacts = app.contact().all();
+    contact.withId(contacts.stream().mapToInt(ContactData::getId).max().getAsInt());
     String contactinfoFromDetailsForm = app.contact().infoFromDetailsForm(contact.getId());
     assertThat(mergeContact(contact), equalTo(contactinfoFromDetailsForm));
   }
@@ -35,7 +47,7 @@ public class ContactDetailsTests extends TestBase {
   private String mergeContact(ContactData contact) {
     ContactData editcontact = app.contact().phoneEditForm(contact.getId());
     return Stream.of(cleaned(contact.getFirstname() + "" + contact.getLastname()), multiLineStringToString(contact.getAddress()), editcontact.getHomePhone(),
-            editcontact.getMobilePhone(), editcontact.getWorkPhone(), multiLineStringToString(contact.getAllEmails()))
+            editcontact.getMobilePhone(), editcontact.getWorkPhone(), contact.getEmail(), contact.getEmail2(), contact.getEmail3())
             .filter((s) -> !s.equals("")).map(ContactDetailsTests::phoneCleaned).collect(Collectors.joining(";"));
   }
 
@@ -44,10 +56,15 @@ public class ContactDetailsTests extends TestBase {
   }
 
   private static String multiLineStringToString(String multiline) {
-    return Arrays.stream(multiline.split("\n")).filter(s -> !s.equals("")).map(ContactDetailsTests::cleaned).collect(Collectors.joining(";"));
+    if (multiline != null) {
+      return Arrays.stream(multiline.split("\n")).filter(s -> !s.equals("")).map(ContactDetailsTests::cleaned).collect(Collectors.joining(";"));
+    } else {
+      return "";
+    }
   }
 
   private static String cleaned(String str) {
     return str.replaceAll("[-()\\s]", "");
   }
+
 }

@@ -1,10 +1,14 @@
 package mypft.addressbook.tests;
 
 import mypft.addressbook.model.ContactData;
+import mypft.addressbook.model.Contacts;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -12,31 +16,38 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactEmailTests extends TestBase {
 
-  @BeforeMethod
-  public void ensurePreconditions() {
-    app.goTo().HomePage();
-    app.contact().selectContactAll();
-    if (app.contact().all().size() == 0) {
-      app.contact().create(new ContactData()
-                      .withFirstname("Mariya").withLastname("Barkovskaya").withAddress("Taganrog")
-                      .withHomePhone("9612345").withEmail("mariya.barkovskaya@gmail.com").withEmail2("add@1").withEmail3("add@21"),
-              true);
-    }
+  @DataProvider
+  public Iterator<Object[]> validContacts() throws IOException {
+    return loader.validContacts();
   }
 
-  @Test
-  public void testContactPhones() {
-    ContactData contact = app.contact().all().iterator().next();
+  @DataProvider
+  public Iterator<Object[]> validContactsFromJson() throws IOException {
+    return loader.validContactsFromJson();
+  }
+
+  @BeforeMethod
+  public void ensurePreconditions(Object[] args) {
+
+    app.goTo().HomePage();
+      app.contact().create((ContactData) args[0], true);
+  }
+
+  @Test(dataProvider = "validContactsFromJson")
+  public void testContactEmail(ContactData contact) {
+    Contacts contacts = app.contact().all();
+    contact.withId(contacts.stream().mapToInt(ContactData::getId).max().getAsInt());
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
-    assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
+    assertThat(mergeEmails(contact), equalTo(mergeEmails(contactInfoFromEditForm)));
   }
 
   private String mergeEmails(ContactData contact) {
     return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
-            .stream().filter((s) -> ! s.equals("")).map(ContactEmailTests::cleaned).collect(Collectors.joining("\n"));
+            .stream().filter((s) -> ! s.equals("")).map(ContactEmailTests::cleaned).collect(Collectors.joining(";"));
   }
 
   public static String cleaned(String email) {
     return email.replaceAll("\\s", "");
   }
+
 }

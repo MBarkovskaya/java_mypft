@@ -5,54 +5,64 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import static org.openqa.selenium.remote.BrowserType.*;
 
 public class ApplicationManager {
-    WebDriver wd;
+  private final Properties properties;
+  WebDriver wd;
 
-    private SessionHelper sessionHelper;
-    private NavigationHelper navigationHelper;
-    private ContactHelper contactHelper;
-    private GroupHelper groupHelper;
-    private String browser;
+  private SessionHelper sessionHelper;
+  private NavigationHelper navigationHelper;
+  private ContactHelper contactHelper;
+  private GroupHelper groupHelper;
+  private String browser;
 
-    public ApplicationManager(String browser) {
-        this.browser = browser;
+  public ApplicationManager(String browser) {
+    this.browser = browser;
+    properties = new Properties();
+  }
+
+  public void init() throws IOException {
+    String target = System.getProperty("target", "local");
+    properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+
+    if (browser.equals(FIREFOX)) {
+      wd = new FirefoxDriver();
+    } else if (browser.equals(CHROME)) {
+      wd = new ChromeDriver();
+    } else if (browser.equals(IE)) {
+      wd = new InternetExplorerDriver();
     }
+    wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+    wd.get(properties.getProperty("web.baseUrl"));
+    groupHelper = new GroupHelper(wd);
+    contactHelper = new ContactHelper(wd);
+    navigationHelper = new NavigationHelper(wd);
+    sessionHelper = new SessionHelper(wd);
+    sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
+  }
 
-    public void init() {
-        if (browser.equals(FIREFOX)) {
-            wd = new FirefoxDriver();
-        } else if (browser.equals(CHROME)) {
-            wd = new ChromeDriver();
-        } else if (browser.equals(IE)) {
-            wd = new InternetExplorerDriver();
-        }
-        wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        wd.get("http://localhost/addressbook");
-        groupHelper = new GroupHelper(wd);
-        contactHelper = new ContactHelper(wd);
-        navigationHelper = new NavigationHelper(wd);
-        sessionHelper = new SessionHelper(wd);
-        sessionHelper.login("admin", "secret");
-    }
+  public void stop() {
+    wd.quit();
+  }
 
-    public void stop() {
-        wd.quit();
-    }
+  public GroupHelper group() {
+    return groupHelper;
+  }
 
-    public GroupHelper group() {
-        return groupHelper;
-    }
+  public NavigationHelper goTo() {
+    return navigationHelper;
+  }
 
-    public NavigationHelper goTo() {
-        return navigationHelper;
-    }
-
-    public ContactHelper contact() {
-        return contactHelper;
-    }
+  public ContactHelper contact() {
+    return contactHelper;
+  }
 
 }

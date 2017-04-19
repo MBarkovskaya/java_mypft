@@ -33,6 +33,8 @@ public class ContactHelper extends BaseHelper {
     type(By.name("mobile"), contactData.getMobilePhone());
     type(By.name("work"), contactData.getWorkPhone());
     type(By.name("email"), contactData.getEmail());
+    type(By.name("email2"), contactData.getEmail2());
+    type(By.name("email3"), contactData.getEmail3());
 
     if (creation) {
       if (contactData.getGroup() != null) {
@@ -61,7 +63,7 @@ public class ContactHelper extends BaseHelper {
 
   public void selectContactById(int id) {
     wd.findElement(By.cssSelector(String.format("input[value ='%s']", id))).click();
-  }
+}
 
   public void initAddContactToGroup() {
     click(By.name("add"));
@@ -76,8 +78,8 @@ public class ContactHelper extends BaseHelper {
     wd.findElement(By.xpath(String.format("//form[@id='right']//select[@name='group']//option[@value='%s']", id))).click();
   }
 
-  public void returnToSelectedGropePage(String group) {
-    click(By.linkText("group page \"" + group + "\""));
+  public void returnToSelectedGropePage(int id) {
+    click(By.cssSelector(String.format("a[href='./?group=%s']", id)));
   }
 
   public void initContactModification(int id) {
@@ -120,12 +122,12 @@ public class ContactHelper extends BaseHelper {
     contactCache = null;
   }
 
-  public void addToGroup(int groupId, int contactId, String groupName) {
+  public void addToGroup(int groupId, int contactId) {
     selectContactById(contactId);
     selectGroupComboById(groupId);
     initAddContactToGroup();
     contactCache = null;
-    returnToSelectedGropePage(groupName);
+    returnToSelectedGropePage(groupId);
   }
 
   public void removeFromGroup(int contactId) {
@@ -220,6 +222,13 @@ public class ContactHelper extends BaseHelper {
 
   private void initContactDataById(int id) {
     wd.findElement(By.cssSelector(String.format("a[href='view.php?id=%s", id))).click();
+  }
+
+  public String photoFromEditForm(int contactId) {
+    initContactModificationById(contactId);
+    String multiline = wd.findElement(By.xpath("//textarea[@name='address']")).getText();
+    wd.navigate().back();
+    return null;
   }
 }
 
