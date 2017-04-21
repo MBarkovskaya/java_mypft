@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 
@@ -29,21 +30,24 @@ public class ContactModificationTests extends TestBase {
   public void ensurePreconditions(Object[] args) {
 
     app.goTo().HomePage();
-    if (app.contact().all().size() == 0) {
-      app.contact().create((ContactData) args[0], true);
+    if (app.db().contacts().size() == 0) {
+      File photo = new File("src/test/resources/k.png");
+      app.contact().create(((ContactData) args[0]).withPhoto(photo), true);
     }
   }
 
   @Test(dataProvider = "validContacts")
   public void testContactModification(ContactData contact) {
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     ContactData originalContact = before.iterator().next();
-    ContactData modifiedContact = ContactDataGenerator.generateRandomContact();
+    File photo = new File("src/test/resources/k.png");
+    ContactData modifiedContact = ContactDataGenerator.generateRandomContact().withPhoto(photo);
     modifiedContact.withId(originalContact.getId());
     app.contact().modify(modifiedContact);
     assertThat(app.contact().count(), equalTo(before.size()));
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(before.without(originalContact).withAdded(modifiedContact)));
+    verifyContactListInUI();
   }
 
 }

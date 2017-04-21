@@ -39,17 +39,17 @@ public class ContactAddressTests extends TestBase {
   public void ensurePreconditions(Object[] args) {
 
     app.goTo().HomePage();
-    if (app.contact().all().size() == 0) {
+    if (app.db().contacts().size() == 0) {
       app.contact().create((ContactData) args[0], true);
     }
   }
 
   @Test(dataProvider = "validContactsFromJson")
   public void testContactAddress(ContactData contact) {
-    Contacts contacts = app.contact().all();
+    Contacts contacts = app.db().contacts();
     contact.withId(contacts.stream().mapToInt(ContactData::getId).max().getAsInt());
     String contactInfoFromEditForm = app.contact().addressInfoFromEditForm(contact.getId());
-    assertThat(multiLineStringToString(contact.getAddress()), equalTo(multiLineStringToString(contactInfoFromEditForm)));
+    assertThat(multiLineStringToString(contact.getAddress()+contact.getAddress2()), equalTo(multiLineStringToString(contactInfoFromEditForm)));
   }
   private static String multiLineStringToString(String multiline) {
     return Arrays.stream(multiline.split("\n")).filter(s -> !s.equals("")).collect(Collectors.joining(";"));

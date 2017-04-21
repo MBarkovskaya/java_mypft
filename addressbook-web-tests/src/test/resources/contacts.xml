@@ -1,14 +1,20 @@
 <list>
   <contact>
     <firstname>firstname 0</firstname>
+    <middlename>midlename 0</middlename>
     <lastname>lastname 0</lastname>
+    <nickname>nickname 0</nickname>
+    <title>title 0</title>
+    <company>company 0</company>
     <address>address 0</address>
     <homePhone>homePhone 0</homePhone>
+    <mobilePhone>mobilePhone 0</mobilePhone>
+    <workPhone>workPhone 0</workPhone>
+    <fax>fax 0</fax>
+    <homePhone2>homePhone2 0</homePhone2>
     <email>email 0</email>
     <email2>email2 0</email2>
     <email3>email3 0</email3>
-    <mobilePhone>mobilePhone 0</mobilePhone>
-    <workPhone>workPhone 0</workPhone>
-    <allEmails>email0;email20;email30</allEmails>
+    <address2>address2 0</address2>
   </contact>
 </list>

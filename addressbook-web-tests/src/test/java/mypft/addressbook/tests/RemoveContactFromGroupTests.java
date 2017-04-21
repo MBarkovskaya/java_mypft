@@ -4,9 +4,11 @@ import mypft.addressbook.model.ContactData;
 import mypft.addressbook.model.Contacts;
 import mypft.addressbook.model.GroupData;
 import mypft.addressbook.model.Groups;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.io.IOException;
 
 import static org.testng.Assert.assertEquals;
@@ -23,22 +25,30 @@ public class RemoveContactFromGroupTests extends TestBase {
     return new Object[][] {{loader.validContacts().next()[0], loader.validGroups().next()[0]}};
   }
 
+  @BeforeMethod
+  public void ensurePreconditions(Object[] args) {
+    app.goTo().GroupPage();
+    GroupData groupData = (GroupData) args[1];
+    app.group().create(groupData);
+    Groups groups = app.db().groups();
+    groupData.withId(groups.stream().mapToInt(GroupData::getId).max().getAsInt());
+    app.goTo().HomePage();
+    File photo = new File("src/test/resources/k.png");
+    ContactData contactData = (ContactData) args[0];
+    app.contact().create(contactData.withPhoto(photo), true);
+    app.contact().selectContactAll();
+    Contacts contacts = app.db().contacts();
+    contactData.withId(contacts.stream().mapToInt(ContactData::getId).max().getAsInt());
+    app.contact().addToGroup(groupData.getId(), contactData.getId());
+  }
+
   @Test(dataProvider = "data")
   public void testRemoveContactFromGroup(ContactData contact, GroupData group) {
-    app.goTo().GroupPage();
-    app.group().create(group);
-    Groups groups = app.group().all();
-    group.withId(groups.stream().mapToInt(GroupData::getId).max().getAsInt());
-    app.goTo().HomePage();
-    app.contact().selectContactAll();
-    app.contact().create(contact, true);
-    Contacts contacts = app.contact().all();
-    contact.withId(contacts.stream().mapToInt(ContactData::getId).max().getAsInt());
-    app.contact().addToGroup(group.getId(), contact.getId());
     app.goTo().HomePage();
     app.contact().selectContactGroupById(group.getId());
-    app.contact().removeFromGroup(contact.getId());
-    Contacts after = app.contact().all();
+    app.contact().removeFromGroup(contact.getId(), group.getId());
+    app.contact().selectContactGroupById(group.getId());
+    Contacts after = app.db().contacts();
     assertEquals(after.size(), 0);
   }
 

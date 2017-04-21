@@ -27,8 +27,8 @@ public class GroupModificationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(Object[] args) {
-    app.goTo().GroupPage();
-    if (app.group().all().size() == 0) {
+    if (app.db().groups().size() == 0) {
+      app.goTo().GroupPage();
       app.group().create((GroupData) args[0]);
     }
   }
@@ -36,21 +36,16 @@ public class GroupModificationTests extends TestBase {
   @Test(dataProvider = "validGroups")
 
   public void testGroupModification(GroupData group) {
-    Groups before = app.group().all();
+    Groups before = app.db().groups();
     GroupData originalGroup = before.iterator().next();
     GroupData modifiedGroup = GroupDataGenerator.generateRandomGroup();
     modifiedGroup.withId(originalGroup.getId());
+    app.goTo().GroupPage();
     app.group().modify(modifiedGroup);
     assertThat(app.group().count(), equalTo(before.size()));
-    Groups after = app.group().all();
+    Groups after = app.db().groups();
     assertThat(after, equalTo(before.without(originalGroup).withAdded(modifiedGroup)));
+    verifyGroupListInUI();
   }
 
-  public Iterator<Object[]> validContacts() throws IOException {
-    return loader.validContacts();
-  }
-
-  public Iterator<Object[]> validContactsFromJson() throws IOException {
-    return loader.validContactsFromJson();
-  }
 }

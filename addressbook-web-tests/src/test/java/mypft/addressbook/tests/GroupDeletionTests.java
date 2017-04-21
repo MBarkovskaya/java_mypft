@@ -27,28 +27,20 @@ public class GroupDeletionTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions(Object[] args) {
     app.goTo().GroupPage();
-    if (app.group().all().size() == 0) {
+    if (app.db().groups().size() == 0) {
       app.group().create((GroupData) args[0]);
     }
   }
 
   @Test(dataProvider = "validGroups")
   public void testGroupDeletion(GroupData group) {
-    Groups groups = app.group().all();
-    group.withId(groups.stream().mapToInt(GroupData::getId).max().getAsInt());
-    Groups before = app.group().all();
+    Groups before = app.db().groups();
+    group.withId(before.stream().mapToInt(GroupData::getId).max().getAsInt());
     GroupData deletedGroup = before.iterator().next();
     app.group().delete(deletedGroup);
     assertThat(app.group().count(), equalTo(before.size() - 1));
-    Groups after = app.group().all();
+    Groups after = app.db().groups();
     assertThat(after, equalTo(before.without(deletedGroup)));
   }
 
-  public Iterator<Object[]> validContacts() throws IOException {
-    return loader.validContacts();
-  }
-
-  public Iterator<Object[]> validContactsFromJson() throws IOException {
-    return loader.validContactsFromJson();
-  }
 }
