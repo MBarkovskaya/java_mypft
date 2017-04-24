@@ -37,11 +37,31 @@ public class DbHelper {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     List<ContactData> result = session.createQuery("from ContactData where deprecated = '0000-00-00'").list();
-    Comparator<? super ContactData> byId = Comparator.comparingInt(ContactData::getId);
-    result.sort(byId);
     session.getTransaction().commit();
     session.close();
     return new Contacts(result);
+  }
+
+  public Contacts groupContacts(int groupId) {
+    Session session = sessionFactory.openSession();
+    GroupData group = (GroupData) session.createQuery("from GroupData where id=" + groupId).getSingleResult();
+    Contacts contacts = group.getContacts();
+    session.close();
+    return contacts;
+  }
+
+  public ContactData contactById(int contactId) {
+    Session session = sessionFactory.openSession();
+    ContactData result = (ContactData) session.createQuery("from ContactData where id=" + contactId).getSingleResult();
+    session.close();
+    return result;
+  }
+
+  public GroupData groupById(int groupId) {
+    Session session = sessionFactory.openSession();
+    GroupData result = (GroupData) session.createQuery("from GroupData where id=" + groupId).getSingleResult();
+    session.close();
+    return result;
   }
 }
 

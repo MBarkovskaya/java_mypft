@@ -15,6 +15,7 @@ import org.testng.annotations.BeforeSuite;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -63,9 +64,14 @@ public class TestBase {
     if (Boolean.getBoolean("verifyUI")) {
       Contacts dbContacts = app.db().contacts();
       Contacts uiContacts = app.contact().all();
-      assertThat(uiContacts, equalTo(dbContacts.stream()
-              .map((g) -> new ContactData().withId(g.getId()).withFirstname(g.getFirstname()).withLastname(g.getLastname()))
-              .collect(Collectors.toSet())));
+      assertThat(flatSet(uiContacts), equalTo(flatSet(dbContacts)));
     }
+  }
+
+  public Set<ContactData> flatSet(Contacts contacts) {
+    return contacts.stream()
+            .map((c) -> new ContactData().withId(c.getId()).withFirstname(c.getFirstname())
+                    .withLastname(c.getLastname()).withAddress(c.getAddress()))
+            .collect(Collectors.toSet());
   }
 }

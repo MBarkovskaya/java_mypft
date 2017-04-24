@@ -50,6 +50,7 @@ public class ContactAddressTests extends TestBase {
     contact.withId(contacts.stream().mapToInt(ContactData::getId).max().getAsInt());
     String contactInfoFromEditForm = app.contact().addressInfoFromEditForm(contact.getId());
     assertThat(multiLineStringToString(contact.getAddress()+contact.getAddress2()), equalTo(multiLineStringToString(contactInfoFromEditForm)));
+    verifyContactListInUI();
   }
   private static String multiLineStringToString(String multiline) {
     return Arrays.stream(multiline.split("\n")).filter(s -> !s.equals("")).collect(Collectors.joining(";"));

@@ -2,6 +2,8 @@ package mypft.addressbook.tests;
 
 import mypft.addressbook.model.ContactData;
 import mypft.addressbook.model.Contacts;
+import mypft.addressbook.model.GroupData;
+import mypft.addressbook.model.Groups;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -32,22 +34,23 @@ public class ContactDetailsTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions(Object[] args) {
     app.goTo().HomePage();
+    Contacts contacts = app.db().contacts();
     File photo = new File("src/test/resources/k.png");
-    app.contact().create(((ContactData) args[0]).withPhoto(photo), true);
+    if (contacts.size() == 0) {
+      app.contact().create(((ContactData) args[0]).withPhoto(photo), true);
+    }
   }
 
   @Test(dataProvider = "validContactsFromJson")
   public void testContactPreview(ContactData contact) {
-    app.goTo().HomePage();
-    app.contact().selectContactAll();
     Contacts contacts = app.db().contacts();
     contact.withId(contacts.stream().mapToInt(ContactData::getId).max().getAsInt());
     ContactData editcontact = app.contact().edit(contact);
     File photo = new File("src/test/resources/k.png");
     editcontact.withPhoto(photo);
     String contactinfoFromDetailsForm = app.contact().infoFromDetailsForm(contact.getId());
-
     assertThat(mergeContact(editcontact), equalTo(contactinfoFromDetailsForm));
+    verifyContactListInUI();
   }
 
   private String mergeContact(ContactData editcontact) {

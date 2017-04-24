@@ -30,8 +30,11 @@ public class ContactPhoneTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions(Object[] args) {
     app.goTo().HomePage();
+    Contacts contacts = app.db().contacts();
     File photo = new File("src/test/resources/k.png");
-    app.contact().create(((ContactData) args[0]).withPhoto(photo), true);
+    if (contacts.size() == 0) {
+      app.contact().create(((ContactData) args[0]).withPhoto(photo), true);
+    }
   }
 
   @Test(dataProvider = "validContactsFromJson")
@@ -40,6 +43,7 @@ public class ContactPhoneTests extends TestBase {
     contact.withId(contacts.stream().mapToInt(ContactData::getId).max().getAsInt());
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
     assertThat(mergePhones(contact), equalTo(mergePhones(contactInfoFromEditForm)));
+    verifyContactListInUI();
   }
 
   private String mergePhones(ContactData contact) {

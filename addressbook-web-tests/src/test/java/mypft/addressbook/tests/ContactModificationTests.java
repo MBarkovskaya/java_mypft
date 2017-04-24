@@ -28,7 +28,6 @@ public class ContactModificationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(Object[] args) {
-
     app.goTo().HomePage();
     if (app.db().contacts().size() == 0) {
       File photo = new File("src/test/resources/k.png");

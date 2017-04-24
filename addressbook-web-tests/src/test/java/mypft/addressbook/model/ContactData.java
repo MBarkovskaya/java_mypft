@@ -75,10 +75,10 @@ public class ContactData {
   @Type(type = "text")
   private String homePhone2;
 
-  @ManyToMany
+  @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(name = "address_in_groups",
           joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
-  private Set<GroupData> groups = new HashSet<GroupData>();
+  private Set<GroupData> groups;
 
   @Expose
   @Column(name = "email")
@@ -296,7 +296,19 @@ public class ContactData {
   }
 
   public Groups getGroups() {
-    return new Groups(groups);
+    return new Groups(getGroupSet());
+  }
+
+  public ContactData inGroup(GroupData group) {
+    getGroupSet().add(group);
+    return this;
+  }
+
+  protected Set<GroupData> getGroupSet() {
+    if (groups == null) {
+      groups = new HashSet<>();
+    }
+    return groups;
   }
 
   @Override
@@ -324,13 +336,11 @@ public class ContactData {
     if (workPhone != null ? !workPhone.equals(that.workPhone) : that.workPhone != null) return false;
     if (fax != null ? !fax.equals(that.fax) : that.fax != null) return false;
     if (homePhone2 != null ? !homePhone2.equals(that.homePhone2) : that.homePhone2 != null) return false;
-    if (groups != null ? !groups.equals(that.groups) : that.groups != null) return false;
     if (email != null ? !email.equals(that.email) : that.email != null) return false;
     if (email2 != null ? !email2.equals(that.email2) : that.email2 != null) return false;
     if (email3 != null ? !email3.equals(that.email3) : that.email3 != null) return false;
     if (allPhones != null ? !allPhones.equals(that.allPhones) : that.allPhones != null) return false;
     if (allEmails != null ? !allEmails.equals(that.allEmails) : that.allEmails != null) return false;
-    if (photo != null ? !photo.equals(that.photo) : that.photo != null) return false;
     return address2 != null ? address2.equals(that.address2) : that.address2 == null;
   }
 
@@ -349,15 +359,14 @@ public class ContactData {
     result = 31 * result + (workPhone != null ? workPhone.hashCode() : 0);
     result = 31 * result + (fax != null ? fax.hashCode() : 0);
     result = 31 * result + (homePhone2 != null ? homePhone2.hashCode() : 0);
-    result = 31 * result + (groups != null ? groups.hashCode() : 0);
     result = 31 * result + (email != null ? email.hashCode() : 0);
     result = 31 * result + (email2 != null ? email2.hashCode() : 0);
     result = 31 * result + (email3 != null ? email3.hashCode() : 0);
     result = 31 * result + (allPhones != null ? allPhones.hashCode() : 0);
     result = 31 * result + (allEmails != null ? allEmails.hashCode() : 0);
-    result = 31 * result + (photo != null ? photo.hashCode() : 0);
     result = 31 * result + (address2 != null ? address2.hashCode() : 0);
     return result;
   }
+
 }
 
