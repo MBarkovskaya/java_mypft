@@ -8,6 +8,8 @@ dependencies {
     compile 'org.testng:testng:6.11'
     compile 'org.seleniumhq.selenium:selenium-java:2.53.1'
     compile 'org.hamcrest:java-hamcrest:2.0.0.0'
+    compile 'commons-net:commons-net:3.6'
+    compile 'org.subethamail:subethasmtp:3.1.7'
 }
 
 test {
