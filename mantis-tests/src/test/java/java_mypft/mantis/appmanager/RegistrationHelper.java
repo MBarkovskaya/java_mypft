@@ -17,7 +17,8 @@ public class RegistrationHelper extends HelperBase {
 
   public void finish(String confirmationLink, String password) {
     wd.get(confirmationLink);
+    type(By.name("password"), password);
     type(By.name("password_confirm"), password);
-    click(By.cssSelector("input[value='Update User']"));
+    click(By.xpath("//span[@class='submit-button']/button"));
   }
 }
