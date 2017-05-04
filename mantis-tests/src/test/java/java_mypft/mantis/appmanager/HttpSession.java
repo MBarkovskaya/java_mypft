@@ -11,7 +11,6 @@ import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
-import java.io.Closeable;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,15 +40,16 @@ public class HttpSession {
   private String getTextFrom(CloseableHttpResponse response) throws IOException {
     try {
       return EntityUtils.toString(response.getEntity());
-    }finally {
+    } finally {
       response.close();
     }
   }
-public boolean isLoggedInAs(String username) throws IOException {
-  HttpGet get = new HttpGet(app.getProperty("web.baseUrl") + "/index.php");
-  CloseableHttpResponse response = httpClient.execute(get);
-  String body = getTextFrom(response);
-  return body.contains(String.format("<a href=\"/mantisbt-2.3.1/account_page.php\">%s</a>", username));
-}
+
+  public boolean isLoggedInAs(String username) throws IOException {
+    HttpGet get = new HttpGet(app.getProperty("web.baseUrl") + "/index.php");
+    CloseableHttpResponse response = httpClient.execute(get);
+    String body = getTextFrom(response);
+    return body.contains(String.format("<a href=\"/mantisbt-2.3.1/account_page.php\">%s</a>", username));
+  }
 
 }
