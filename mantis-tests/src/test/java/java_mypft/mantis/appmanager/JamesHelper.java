@@ -68,8 +68,15 @@ public class JamesHelper {
 
 //Don't know why it doesn't allow login at the first attempt
     readUntil("login id:");
+    write("");
+    readUntil("Password:");
+    write("Password:");
+    write(password);
+
+    // Second login attempt, must be successful
+    readUntil("login id:");
     write(login);
-    readUntil("Passeord:");
+    readUntil("Password:");
     write("Password:");
     write(password);
 

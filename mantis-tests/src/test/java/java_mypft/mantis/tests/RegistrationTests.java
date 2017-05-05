@@ -1,6 +1,7 @@
 package java_mypft.mantis.tests;
 
 import java_mypft.mantis.model.MailMessage;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
 
@@ -12,7 +13,7 @@ import static org.testng.Assert.assertTrue;
 
 public class RegistrationTests extends TestBase {
 
-  //@BeforeMethod
+//  @BeforeMethod
   public void startMailServer() {
     app.mail().start();
   }
