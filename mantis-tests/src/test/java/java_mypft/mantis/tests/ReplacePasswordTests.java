@@ -2,7 +2,6 @@ package java_mypft.mantis.tests;
 
 import java_mypft.mantis.model.MailMessage;
 import java_mypft.mantis.model.UserData;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,25 +15,25 @@ import static org.testng.Assert.assertTrue;
 
 public class ReplacePasswordTests extends TestBase {
 
-  int userId = 25;
+  int userId = 43;
   private String password = "May";
 
 
-//  @BeforeMethod
+  @BeforeMethod
   public void startMailServer() {
     app.mail().start();
   }
 
-//  @Test
-//  public void testReplacePassword() throws IOException, MessagingException {
-//    app.replacePassword().loginAsAdmin();
-//    app.replacePassword().resetUserPassword(userId);
-//    List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
-//    UserData userData = app.db().userById(userId);
-//    String confirmationLink = findConfirmationLink(mailMessages, userData.getEmail());
-//    app.replacePassword().renewalPassword(confirmationLink, password, userData);
-//    assertTrue(app.newSession().login(userData.getUsername(), password));
-//  }
+  @Test
+  public void testReplacePassword() throws IOException, MessagingException {
+    app.replacePassword().loginAsAdmin();
+    app.replacePassword().resetUserPassword(userId);
+    List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
+    UserData userData = app.db().userById(userId);
+    String confirmationLink = findConfirmationLink(mailMessages, userData.getEmail());
+    app.replacePassword().renewalPassword(confirmationLink, password, userData);
+    assertTrue(app.newSession().login(userData.getUsername(), password));
+  }
 
   private String findConfirmationLink(List<MailMessage> mailMessages, String email) {
     MailMessage mailMessage = mailMessages.stream().filter((m) -> m.to.equals(email)).findFirst().get();
@@ -42,7 +41,7 @@ public class ReplacePasswordTests extends TestBase {
     return regex.getText(mailMessage.text);
   }
 
-//  @AfterMethod
+  @AfterMethod
   public void stopMailServer() {
     app.mail().stop();
   }

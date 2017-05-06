@@ -37,9 +37,9 @@ public class JamesHelper {
     return result.trim().equals("User " + name + " exist");
   }
 
-  public void createUser(String name, String password) {
+  public void createUser(String name, String passwd) {
     initTelnetSession();
-    write("adduser " + name + " " + password);
+    write("adduser " + name + " " + passwd);
     String result = readUntil("User " + name + " added");
     closeTelnetSession();
   }
@@ -67,21 +67,19 @@ public class JamesHelper {
     }
 
 //Don't know why it doesn't allow login at the first attempt
-    readUntil("login id:");
+    readUntil("Login id:");
     write("");
     readUntil("Password:");
-    write("Password:");
-    write(password);
+    write("");
 
     // Second login attempt, must be successful
-    readUntil("login id:");
+    readUntil("Login id:");
     write(login);
     readUntil("Password:");
-    write("Password:");
     write(password);
 
     // Read welcome message
-    readUntil("Welcome" + login + ". HELP for a list of commands");
+    readUntil("Welcome "+login+". HELP for a list of commands");
   }
 
   private String readUntil(String pattern) {
@@ -121,7 +119,7 @@ public class JamesHelper {
 
   public void drainEmail(String username, String password) throws MessagingException {
     Folder inbox = openInbox(username, password);
-    for(Message message : inbox.getMessages()) {
+    for (Message message : inbox.getMessages()) {
       message.setFlag(Flags.Flag.DELETED, true);
     }
     closeFolder(inbox);
@@ -144,7 +142,7 @@ public class JamesHelper {
     long now = System.currentTimeMillis();
     while (System.currentTimeMillis() < now + timeout) {
       List<MailMessage> allMail = getAllMail(username, password);
-      if( allMail.size() > 0) {
+      if (allMail.size() > 0) {
         return allMail;
       }
       try {
