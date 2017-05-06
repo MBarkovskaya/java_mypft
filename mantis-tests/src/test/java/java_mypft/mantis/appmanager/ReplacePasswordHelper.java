@@ -16,10 +16,12 @@ public class ReplacePasswordHelper extends HelperBase  {
   }
 
   public void resetUserPassword(int userId) {
+    wd.manage().window().maximize();
     click(By.xpath("//div[@id='sidebar']//span[.=' управление ']"));
     click(By.xpath("//div[@class='row']//a[.='Управление пользователями']"));
     click(By.xpath(String.format("//a[@href='manage_user_edit_page.php?user_id=%s']", userId)));
     click(By.xpath("//span//input[@value='Сбросить пароль']"));
+    click(By.xpath("//div[@class='btn-group']//a[.='Продолжить']"));
   }
 
   public void renewalPassword(String confirmationLink, String password, UserData userData) {
@@ -28,5 +30,6 @@ public class ReplacePasswordHelper extends HelperBase  {
     type(By.id("password"),password);
     type(By.id("password-confirm"),password);
     click(By.xpath("//span[@class='submit-button']/button"));
+
   }
 }

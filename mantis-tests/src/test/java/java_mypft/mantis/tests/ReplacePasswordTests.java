@@ -15,7 +15,7 @@ import static org.testng.Assert.assertTrue;
 
 public class ReplacePasswordTests extends TestBase {
 
-  int userId = 43;
+  int userId = 2;
   private String password = "May";
 
 
