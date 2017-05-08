@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f988fe81-4bf3-494e-97a0-fafeca10d989" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/ApplicationManager.java" afterPath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/ApplicationManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/SoapHelper.java" afterPath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/SoapHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/model/Issue.java" afterPath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/model/Issue.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/model/Project.java" afterPath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/model/Project.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/LoginTests.java" afterPath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/LoginTests.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/SoapTests.java" afterPath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/SoapTests.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/TestBase.java" afterPath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/TestBase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantis-tests/src/test/resources/local.properties" afterPath="$PROJECT_DIR$/mantis-tests/src/test/resources/local.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/soap-sample/src/test/java/java_mypft/soap/GeoIPServiceTests.java" afterPath="$PROJECT_DIR$/soap-sample/src/test/java/java_mypft/soap/GeoIPServiceTests.java" />
     </list>
     <ignored path="$PROJECT_DIR$/sandbox/.gradle/" />
     <ignored path="$PROJECT_DIR$/sandbox/build/" />
@@ -1986,7 +1974,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mantis-tests" />
+              <option name="myItemId" value="rest-sample" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2000,7 +1988,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mantis-tests" />
+              <option name="myItemId" value="rest-sample" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2011,10 +1999,6 @@
               <option name="myItemId" value="test" />
               <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2026,41 +2010,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mantis-tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mantis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java_mypft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java_mypft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mantis-tests" />
+              <option name="myItemId" value="rest-sample" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2076,7 +2026,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mantis" />
+              <option name="myItemId" value="rest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java_mypft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java_mypft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rest-sample" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2091,10 +2059,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="mantis-tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2774,7 +2738,7 @@
       <workItem from="1494085595214" duration="10331000" />
       <workItem from="1494142592386" duration="10910000" />
       <workItem from="1494224496871" duration="8828000" />
-      <workItem from="1494240426482" duration="8109000" />
+      <workItem from="1494240426482" duration="8859000" />
     </task>
     <task id="LOCAL-00001" summary="Реализован сценарий смены пароля пользователю баг-трекера MantisBT администратором системы">
       <created>1494084957251</created>
@@ -2790,7 +2754,14 @@
       <option name="project" value="LOCAL" />
       <updated>1494096268852</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Реализована интеграция теста LoginTests с баг-трекером MantisBT">
+      <created>1494253148951</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1494253148951</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2826,11 +2797,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="160941000" />
+    <option name="totallyTimeSpent" value="161691000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="45" y="0" width="1874" height="916" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2855,7 +2825,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7608983" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28776187" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28776187" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32337245" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32910696" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2911,7 +2881,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Реализован сценарий смены пароля пользователю баг-трекера MantisBT администратором системы" />
     <MESSAGE value="Creation SoapTests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creation SoapTests" />
+    <MESSAGE value="Реализована интеграция теста LoginTests с баг-трекером MantisBT" />
+    <option name="LAST_COMMIT_MESSAGE" value="Реализована интеграция теста LoginTests с баг-трекером MantisBT" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3204,6 +3175,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="15" column="60" lean-forward="false" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="60" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3252,8 +3224,8 @@
         <state relative-caret-position="206">
           <caret line="49" column="38" lean-forward="false" selection-start-line="49" selection-start-column="38" selection-end-line="49" selection-end-column="38" />
           <folding>
-            <element signature="e#1360#1361#0" expanded="true" />
-            <element signature="e#1404#1405#0" expanded="true" />
+            <element signature="e#1360#1361#0" expanded="false" />
+            <element signature="e#1404#1405#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3303,8 +3275,8 @@
         <state relative-caret-position="153">
           <caret line="18" column="43" lean-forward="true" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
           <folding>
-            <element signature="e#442#443#0" expanded="true" />
-            <element signature="e#470#471#0" expanded="true" />
+            <element signature="e#442#443#0" expanded="false" />
+            <element signature="e#470#471#0" expanded="false" />
           </folding>
         </state>
       </provider>

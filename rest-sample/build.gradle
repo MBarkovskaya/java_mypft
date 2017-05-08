@@ -1,0 +1,14 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.testng:testng:6.11'
+    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'org.apache.httpcomponents:httpclient:4.5.3'
+    compile 'org.apache.httpcomponents:fluent-hc:4.5.3'
+    compile 'com.jayway.restassured:rest-assured:2.9.0'
+
+}
