@@ -1,10 +1,12 @@
 package java_mypft.mantis.model;
 
 public class Project {
+  //для удобства использования создаем собственный модельный объект Progect для представления проектов
   private int id;
   private String name;
 
-  public int getId() { 
+  //генерим геттеры и сеттеры, сеттеры меняем (делаем fluent interface)
+  public int getId() {
     return id;
   }
 

@@ -105,6 +105,9 @@ public class ApplicationManager {
     return dbHelper;
   }
 
+  //ленивая инициализация помощника SoapHelper
+  //создаем соответствующее поле soapHelper
+  //делаем конструктор, который в качестве параметра принимает ApplicationManager (в классе SoapHelper)
   public SoapHelper soap() {
     if (soapHelper == null) {
       soapHelper = new SoapHelper(this);

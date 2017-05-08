@@ -1,11 +1,14 @@
 package java_mypft.mantis.model;
 
+//создаем модельный объект Issue для багрепортов с идентификаторами id, summary, description, который будет связан с каким-то проектом Project project
+
 public class Issue {
   private int id;
   private String summary;
-  private String descroption;
+  private String description;
   private Project project;
 
+  //создаем геттеры и сеттеры и меняем сеттеры на такие, которые можно вытягивать в цепочку(fluent interface)
   public int getId() {
     return id;
   }
@@ -24,12 +27,12 @@ public class Issue {
     return this;
   }
 
-  public String getDescroption() {
-    return descroption;
+  public String getDescription() {
+    return description;
   }
 
-  public Issue withDescroption(String descroption) {
-    this.descroption = descroption;
+  public Issue withDescription(String description) {
+    this.description = description;
     return this;
   }
 
