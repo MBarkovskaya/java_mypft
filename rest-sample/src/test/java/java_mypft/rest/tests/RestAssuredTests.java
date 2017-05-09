@@ -1,13 +1,11 @@
-package java_mypft.rest;
+package java_mypft.rest.tests;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.jayway.restassured.RestAssured;
-import org.apache.http.client.fluent.Executor;
-import org.apache.http.client.fluent.Request;
-import org.apache.http.message.BasicNameValuePair;
+import java_mypft.rest.model.Issue;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -18,6 +16,7 @@ import static org.testng.Assert.assertEquals;
 
 public class RestAssuredTests {
 
+  //для того, чтобы RestAssured выполнял вход с нужным паролем и логином
   @BeforeClass
   public void init() {
     RestAssured.authentication = RestAssured.basic("LSGjeU4yP1X493ud1hNniA==", "");
@@ -34,22 +33,23 @@ public class RestAssuredTests {
   }
 
   private Set<Issue> getIssues() throws IOException {
+    //выполняем запрос get
     String json = RestAssured.get("http://demo.bugify.com/api/issues.json").asString();
+    //текст строки json анализируем
     JsonElement parsed = new JsonParser().parse(json);
+    //извлекаем из него нужную информацию
     JsonElement issues = parsed.getAsJsonObject().get("issues");
+    // полученное значение переменной issues автоматически преобразуем в множество модельных объектов
     return new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {}.getType());
-
-  }
-
-  private Executor getExecutor() {
-    return Executor.newInstance().auth("LSGjeU4yP1X493ud1hNniA==", "");
   }
 
   private int createIssue(Issue newIssue) throws IOException {
-     String json = RestAssured.given().parameter("subject", newIssue.getSubject())
-                       .parameter("description", newIssue.getDescription())
-                       .post("http://demo.bugify.com/api/issues.json").asString();
+    //отправляется запрос на указанный адрес и передаются параметры, ответ получаем в виде строки json
+    String json = RestAssured.given().parameter("subject", newIssue.getSubject()).parameter("description", newIssue.getDescription())
+            .post("http://demo.bugify.com/api/issues.json").asString();
+    //текст строки json анализируем
     JsonElement parsed = new JsonParser().parse(json);
+    //извлекаем из него нужную информацию
     return parsed.getAsJsonObject().get("issue_id").getAsInt();
   }
 

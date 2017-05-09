@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
 
 import javax.mail.MessagingException;
+import javax.xml.rpc.ServiceException;
 import java.io.IOException;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import static org.testng.Assert.assertTrue;
 
 public class ReplacePasswordTests extends TestBase {
 
+  int issueId = 2;
   int userId = 2;
   private String password = "May";
 
@@ -25,7 +27,8 @@ public class ReplacePasswordTests extends TestBase {
   }
 
   @Test
-  public void testReplacePassword() throws IOException, MessagingException {
+  public void testReplacePassword() throws IOException, MessagingException, ServiceException {
+    skipIfNotFixed(issueId);
     app.replacePassword().loginAsAdmin();
     app.replacePassword().resetUserPassword(userId);
     List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);

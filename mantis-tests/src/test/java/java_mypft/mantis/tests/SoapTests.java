@@ -14,11 +14,12 @@ import static org.testng.Assert.assertNotNull;
 
 public class SoapTests extends TestBase {
 
+  int issueId = 3;
   //перед запуском теста запускаем FTP server
 
-  
   @Test
   public void testGetProjects() throws MalformedURLException, ServiceException, RemoteException {
+    skipIfNotFixed(issueId);
     //обращаемся к удаленному программному интерфейсу с URL http://localhost/mantisbt-2.3.1/api/soap/mantisconnect.php, чтобы получить из него информацию о проектах
     //получаем список проектов (используем библиотеку biz.futureware.mantis.rpc.soap.client из загруженных библиотек, класс ManticConnectLocator))
     Set<Project> projects = app.soap().getProjects();
