@@ -12,6 +12,8 @@ public class HelperBase {
 
   public HelperBase(ApplicationManager app) {
     this.app = app;
+    //чтобы инициализация не происходила слишком рано, меняем ее на ленивую инициализацию
+    //метод getDriver() будет инициализировать драйвер в момент первого обращения
     this.wd = app.getDriver();
   }
 
@@ -20,9 +22,12 @@ public class HelperBase {
   }
 
   protected void type(By locator, String text) {
+    //метод делает клик по полю ввода
     click(locator);
+    //не пытается ввести значения, которые заменят дефолтные
     if (text != null) {
       String existingText = wd.findElement(locator).getAttribute("value");
+      //не пытается вводить текст, если он совпадает с существующим
       if (!text.equals(existingText)) {
         wd.findElement(locator).clear();
         wd.findElement(locator).sendKeys(text);

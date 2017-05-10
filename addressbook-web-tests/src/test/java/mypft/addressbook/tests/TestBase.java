@@ -50,10 +50,21 @@ public class TestBase {
     logger.info("Stop test " + m.getName());
   }
 
+  // для того, чтобы запустить этот метод в EditConfigurations набираем -DverifyUI=true
   public void verifyGroupListInUI() {
+    //загружаем 2 списка групп - один из бд, другой из UI
+    // реализуем возможность отключать эту проверку с помощью условия
+    // если установлено системное свойство Boolean.getBoolean("verifyUI") и оно true, тогда выполняем все эти действия
+    //можно 1) сначала вызвать System.getProperty(), а потом преобразовать строку в булевское значение
+    // или можно по сокращенному 2) варианту - функция getBoolean() получает системное свойство с заданным именем
+    //и автоматически преобразуут его в булевскую величину
     if (Boolean.getBoolean("verifyUI")) {
       Groups dbGroups = app.db().groups();
       Groups uiGroups = app.group().all();
+      //упрощаем объекты, которые загружаем из бд, чтобы они совпадали с объектами, загруженными из UI
+      // анонимная функция map, которая на вход принимает группу, а на выходе новый объект с идентификатором таким же как у преобразуемого объекта, с именем
+      //таким же как у преобразуемого объекта
+      //затем собираем объекты с помощью .collect(Collectors.toSet()
       assertThat(uiGroups, equalTo(dbGroups.stream()
               .map((g) -> new GroupData().withId(g.getId()).withName(g.getName()))
               .collect(Collectors.toSet())));

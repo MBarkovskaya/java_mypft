@@ -29,10 +29,13 @@ public class ApplicationManager {
     properties = new Properties();
   }
 
+
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-
+    //инициализируем dbHelper до того, как мы установим соединение с браузером, потому что
+    // если мы не установим соединение с бд смысла запускать браузер нет
+    //кроме того имеет смысл сначала инициализировать более быстрые помощники
     dbHelper = new DbHelper();
 
     if (browser.equals(FIREFOX)) {

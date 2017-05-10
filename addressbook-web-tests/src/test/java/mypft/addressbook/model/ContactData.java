@@ -15,6 +15,9 @@ import java.util.Set;
 @Table(name = "addressbook")
 
 public class ContactData {
+
+  //в конфигурационном файле hibernate необходимо объявить, что привязка к бд существует
+  //необходимо сгенерировать метод toString(), чтобы в сообщениях о выполнении тестов можно было прочесть понятную информацию, а не в виде представления ее с помощью hashcode
   @XStreamOmitField
 
   @Id
@@ -75,10 +78,20 @@ public class ContactData {
   @Type(type = "text")
   private String homePhone2;
 
+  //Документация по связям содержится на docs.jcoss.org/hibernste/orm/5.1 руководство пользователя user Guide
+  //в разделе Associations для работы со сложными отношениями (контакт может содержать несколько разных групп,
+  // а группа может содержать несколько разных контактов) используется аннотация ManyToMany
+  //fetch = FetchType.EAGER - значит, что из бд будет извлекаться как можно больше информации за один заход
   @ManyToMany(fetch = FetchType.EAGER)
+  //указываем где именно хранится информация об этих связях
+  //в качестве связующей таблицы @JoinTable используется таблица с именем "address_in_groups"
   @JoinTable(name = "address_in_groups",
+          //столбец @JoinColumn указывает на столбец текущего класса, т.е. на контакты
+          //обратный столбец указывает на объекты другого типа, т.е. на группы
           joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
   private Set<GroupData> groups;
+  //согласно документации нужно сразу инициализировать это свойство, т.е. в нашем случае создать пустое множество Hashset
+
 
   @Expose
   @Column(name = "email")
@@ -96,6 +109,7 @@ public class ContactData {
   private String email3;
 
   @Expose
+  //чтобы поле не извлекалось из бд используют аннотацию @Transient или transient  перед private
   @Transient
   private String allPhones;
 
@@ -106,6 +120,7 @@ public class ContactData {
   @Expose
   @Column(name = "photo")
   @Type(type = "text")
+  //бд с типом File не работают, поэтому используем тип String
   private String photo;
 
   @Expose
@@ -115,6 +130,7 @@ public class ContactData {
 
 
   public File getPhoto() {
+    //преобразовать строчку photo в тип File можно внутри геттера и сеттера
     return new File(photo);
   }
 
@@ -127,7 +143,7 @@ public class ContactData {
     return allEmails;
   }
 
-   public int getId() {
+  public int getId() {
     return id;
   }
 
@@ -296,6 +312,7 @@ public class ContactData {
   }
 
   public Groups getGroups() {
+    // множество Groups превращаем в объект типа Groups при этом создается копия
     return new Groups(getGroupSet());
   }
 
@@ -304,6 +321,8 @@ public class ContactData {
     return this;
   }
 
+  //чтобы не возникал NullPointerExeption, когда множество groups null
+  //производим проверку условия и присваиваем и в этом случае groups = new HashSet<>()
   protected Set<GroupData> getGroupSet() {
     if (groups == null) {
       groups = new HashSet<>();
@@ -318,29 +337,69 @@ public class ContactData {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
 
     ContactData that = (ContactData) o;
 
-    if (id != that.id) return false;
-    if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
-    if (middlename != null ? !middlename.equals(that.middlename) : that.middlename != null) return false;
-    if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
-    if (nickname != null ? !nickname.equals(that.nickname) : that.nickname != null) return false;
-    if (title != null ? !title.equals(that.title) : that.title != null) return false;
-    if (company != null ? !company.equals(that.company) : that.company != null) return false;
-    if (address != null ? !address.equals(that.address) : that.address != null) return false;
-    if (homePhone != null ? !homePhone.equals(that.homePhone) : that.homePhone != null) return false;
-    if (mobilePhone != null ? !mobilePhone.equals(that.mobilePhone) : that.mobilePhone != null) return false;
-    if (workPhone != null ? !workPhone.equals(that.workPhone) : that.workPhone != null) return false;
-    if (fax != null ? !fax.equals(that.fax) : that.fax != null) return false;
-    if (homePhone2 != null ? !homePhone2.equals(that.homePhone2) : that.homePhone2 != null) return false;
-    if (email != null ? !email.equals(that.email) : that.email != null) return false;
-    if (email2 != null ? !email2.equals(that.email2) : that.email2 != null) return false;
-    if (email3 != null ? !email3.equals(that.email3) : that.email3 != null) return false;
-    if (allPhones != null ? !allPhones.equals(that.allPhones) : that.allPhones != null) return false;
-    if (allEmails != null ? !allEmails.equals(that.allEmails) : that.allEmails != null) return false;
+    if (id != that.id) {
+      return false;
+    }
+    if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) {
+      return false;
+    }
+    if (middlename != null ? !middlename.equals(that.middlename) : that.middlename != null) {
+      return false;
+    }
+    if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) {
+      return false;
+    }
+    if (nickname != null ? !nickname.equals(that.nickname) : that.nickname != null) {
+      return false;
+    }
+    if (title != null ? !title.equals(that.title) : that.title != null) {
+      return false;
+    }
+    if (company != null ? !company.equals(that.company) : that.company != null) {
+      return false;
+    }
+    if (address != null ? !address.equals(that.address) : that.address != null) {
+      return false;
+    }
+    if (homePhone != null ? !homePhone.equals(that.homePhone) : that.homePhone != null) {
+      return false;
+    }
+    if (mobilePhone != null ? !mobilePhone.equals(that.mobilePhone) : that.mobilePhone != null) {
+      return false;
+    }
+    if (workPhone != null ? !workPhone.equals(that.workPhone) : that.workPhone != null) {
+      return false;
+    }
+    if (fax != null ? !fax.equals(that.fax) : that.fax != null) {
+      return false;
+    }
+    if (homePhone2 != null ? !homePhone2.equals(that.homePhone2) : that.homePhone2 != null) {
+      return false;
+    }
+    if (email != null ? !email.equals(that.email) : that.email != null) {
+      return false;
+    }
+    if (email2 != null ? !email2.equals(that.email2) : that.email2 != null) {
+      return false;
+    }
+    if (email3 != null ? !email3.equals(that.email3) : that.email3 != null) {
+      return false;
+    }
+    if (allPhones != null ? !allPhones.equals(that.allPhones) : that.allPhones != null) {
+      return false;
+    }
+    if (allEmails != null ? !allEmails.equals(that.allEmails) : that.allEmails != null) {
+      return false;
+    }
     return address2 != null ? address2.equals(that.address2) : that.address2 == null;
   }
 

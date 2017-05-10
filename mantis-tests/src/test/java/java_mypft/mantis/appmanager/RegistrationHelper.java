@@ -4,7 +4,11 @@ import org.openqa.selenium.By;
 
 public class RegistrationHelper extends HelperBase {
 
+  //этому помощнику браузер нужен
+
   public RegistrationHelper(ApplicationManager app) {
+    //обращаемся к конструктору базового класса
+    //а он (HelperBase) уже делает все остальное
     super(app);
   }
 
@@ -13,6 +17,8 @@ public class RegistrationHelper extends HelperBase {
     type(By.name("username"), username);
     type(By.name("email"), email);
     click(By.cssSelector("input[value='Зарегистрироваться']"));
+    //после того как эти действия выполнены, на указанный электронный адрес отправляется письмо
+    //вопрос на какой почтовый сервер прийдет это письмо - для упрощения задачи можно сделать свой собственный почтовый сервер
   }
 
   public void finish(String confirmationLink, String password) {

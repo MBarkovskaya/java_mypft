@@ -21,6 +21,8 @@ public class Groups extends ForwardingSet<GroupData> {
     }
 
   public Groups(Collection<GroupData> groups) {
+      //строим новый HashSet, т.е. множество объектов типа GroupData из коллекции
+    //копируем, чтобы никто не испортил
     this.delegate = new HashSet<GroupData>(groups);
   }
 

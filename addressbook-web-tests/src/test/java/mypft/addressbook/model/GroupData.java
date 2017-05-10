@@ -10,12 +10,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 @XStreamAlias("group")
+//реализуем ORM объектно-реляционные преобразования
+//осуществляем привязку к бд с помощью аннотации @Entity, если таблица называется отлично от названия класса, то нужна еще аннотация @Table
 @Entity
 @Table(name = "group_list")
 
 public class GroupData {
   @XStreamOmitField
+  //атрибут id используется как идентификатор, поэтму ему присваивается особая аннотация
   @Id
+  //привязка к столбцу таблицы. если бы название столбца совпадало с названием атрибута, то имя столбца не нужно было бы указывать
   @Column(name = "group_id")
   private int id = Integer.MAX_VALUE;
 
@@ -25,6 +29,8 @@ public class GroupData {
 
   @Expose
   @Column(name = "group_header")
+  //после отладчика hibernate не смог самостоятельно определить тип и intellij выдает ошибку
+  //необходимо указать название типа
   @Type(type = "text")
   private String header;
 
@@ -33,6 +39,8 @@ public class GroupData {
   @Type(type = "text")
   private String footer;
 
+  //здесь связь уже описывать не нужно, это означает, что в парном классе GroupData нужно взять артибут groups
+  // и оттуда взять описание того как реализована связь между этими объектами
   @ManyToMany(mappedBy = "groups")
   private Set<ContactData> contacts;
 
@@ -52,10 +60,12 @@ public class GroupData {
     return footer;
   }
 
+  //так же создаем геттер и реализуем класс Contacts, чтобы можно было вернуть new Contacts()
   public Contacts getContacts() {
     return new Contacts(getContactSet());
   }
 
+  //так же создаем для контактов пустое множество с проверкой, чтобы не возникал NullPointerExeption
   protected Set<ContactData> getContactSet() {
     if (contacts == null) {
       contacts = new HashSet<>();
@@ -94,7 +104,8 @@ public class GroupData {
     if (o == null || getClass() != o.getClass()) return false;
 
     GroupData groupData = (GroupData) o;
-
+    //благодаря использованию бд мы можем сравнивать не один атрибут (как в случае с пользовательским интерфейсом)
+    // а все атрибуты
     if (id != groupData.id) return false;
     if (name != null ? !name.equals(groupData.name) : groupData.name != null) return false;
     if (header != null ? !header.equals(groupData.header) : groupData.header != null) return false;

@@ -19,6 +19,7 @@ public class TestBase {
 
   @BeforeSuite
   public void setUp() throws Exception {
+    //инициализируем ApplicationManager
     app.init();
     //происходит отключение защиты от роботов в багтреккере mantis
     //которое выполняется в тестах путем загрузки файла по протоколу FTP

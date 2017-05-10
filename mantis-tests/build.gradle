@@ -19,6 +19,8 @@ dependencies {
 }
 
 test {
+    //свойства, которые можно передавать при запуске тестов из командной строки
+    
     useTestNG {
         suites 'src/test/resources/testng.xml'
     }

@@ -15,7 +15,9 @@ public class LoginTests extends TestBase {
   @Test
   public void testLogin() throws IOException, ServiceException {
     skipIfNotFixed(issueId);
+    //внутри создаем новую сессию
     HttpSession session = app.newSession();
+    //проверяем, что пользователь залогинился
     assertTrue(session.login("administrator", "root"));
     assertTrue(session.isLoggedInAs("administrator"));
   }

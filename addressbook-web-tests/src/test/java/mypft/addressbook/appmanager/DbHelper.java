@@ -14,6 +14,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class DbHelper {
+  //создаем поле для хранения SessionFactory
   private final SessionFactory sessionFactory;
 
   public DbHelper() {
@@ -23,16 +24,19 @@ public class DbHelper {
             .build();
       sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
   }
-
+  //создаем метод для получения списка групп
   public Groups groups() {
+    //производим те же действия, что мы делали в учебном тесте HbConnection
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     List<GroupData> result = session.createQuery("from GroupData").list();
     session.getTransaction().commit();
     session.close();
+    //возвращаем список групп Groups, предварительно создав конструктор, который по произвольной коллекции Groups(Collection<GroupData> groups)
+    // строит объект типа Groups
     return new Groups(result);
   }
-
+  //создаем метод для получения списка контактов
   public Contacts contacts() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();

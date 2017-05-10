@@ -44,6 +44,7 @@ public class ContactHelper extends BaseHelper {
     attach(By.name("photo"), contactData.getPhoto());
     if (creation) {
       if (contactData.getGroups().size() > 0) {
+        //т.к. на форме создания контакта можно выбрать только одну какую-нибудь группу, то в две разные группы мы добавить контакт не можем, поэтому проверяем условие
         Assert.assertTrue(contactData.getGroups().size() == 1);
         new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
       }
