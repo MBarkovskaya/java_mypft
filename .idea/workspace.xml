@@ -2,29 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f988fe81-4bf3-494e-97a0-fafeca10d989" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/RegistrationJamesTests.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/appmanager/ApplicationManager.java" afterPath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/appmanager/ApplicationManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/appmanager/ContactHelper.java" afterPath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/appmanager/ContactHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/appmanager/DbHelper.java" afterPath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/appmanager/DbHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/model/ContactData.java" afterPath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/model/ContactData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/model/GroupData.java" afterPath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/model/GroupData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/model/Groups.java" afterPath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/model/Groups.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/DbConnectionTest.java" afterPath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/DbConnectionTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/GroupModificationTests.java" afterPath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/GroupModificationTests.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/HbConnectionTest.java" afterPath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/HbConnectionTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/TestBase.java" afterPath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/TestBase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantis-tests/build.gradle" afterPath="$PROJECT_DIR$/mantis-tests/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/ApplicationManager.java" afterPath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/ApplicationManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/FtpHelper.java" afterPath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/FtpHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/HelperBase.java" afterPath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/HelperBase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/HttpSession.java" afterPath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/HttpSession.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/MailHelper.java" afterPath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/MailHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/JamesHelper.java" afterPath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/JamesHelper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/RegistrationHelper.java" afterPath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/RegistrationHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/model/MailMessage.java" afterPath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/model/MailMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/LoginTests.java" afterPath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/LoginTests.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/RegistrationJamesTests.java" afterPath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/RegistrationJamesTests.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/RegistrationTests.java" afterPath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/RegistrationTests.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/TestBase.java" afterPath="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/TestBase.java" />
     </list>
     <ignored path="$PROJECT_DIR$/sandbox/.gradle/" />
     <ignored path="$PROJECT_DIR$/sandbox/build/" />
@@ -107,7 +89,30 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="RegistrationJamesTests.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/RegistrationJamesTests.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="15" column="2" lean-forward="true" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JamesHelper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/JamesHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="135" column="45" lean-forward="true" selection-start-line="135" selection-start-column="45" selection-end-line="135" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -1954,7 +1959,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/appmanager/BaseHelper.java" />
         <option value="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/AddContactToGroupTests.java" />
         <option value="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/RemoveContactFromGroupTests.java" />
         <option value="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/ContactCreationTests.java" />
@@ -2000,11 +2004,12 @@
         <option value="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/TestBase.java" />
         <option value="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/FtpHelper.java" />
         <option value="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/HelperBase.java" />
-        <option value="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/RegistrationHelper.java" />
         <option value="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/model/MailMessage.java" />
         <option value="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/MailHelper.java" />
-        <option value="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/RegistrationJamesTests.java" />
+        <option value="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/RegistrationHelper.java" />
         <option value="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/RegistrationTests.java" />
+        <option value="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/JamesHelper.java" />
+        <option value="$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/RegistrationJamesTests.java" />
       </list>
     </option>
   </component>
@@ -2016,9 +2021,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="58" />
+    <option name="x" value="64" />
     <option name="width" value="1856" />
-    <option name="height" value="885" />
+    <option name="height" value="722" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -2098,6 +2103,10 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="test" />
               <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2181,6 +2190,40 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mantis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="appmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java_mypft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java_mypft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mantis-tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -2231,73 +2274,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="TestNG.GroupCreationTests">
-    <configuration default="false" name="SoapTests.testGetProjects" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="java_mypft.mantis.tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="mantis-tests_test" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" value="java_mypft.mantis.tests" />
-      <option name="MAIN_CLASS_NAME" value="java_mypft.mantis.tests.SoapTests" />
-      <option name="METHOD_NAME" value="testGetProjects" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/mantis-tests" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <envs />
-      <properties />
-      <listeners />
-      <method />
-    </configuration>
-    <configuration default="false" name="DbConnectionTest" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="mypft.addressbook.tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="addressbook-web-tests_test" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" value="mypft.addressbook.tests" />
-      <option name="MAIN_CLASS_NAME" value="mypft.addressbook.tests.DbConnectionTest" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/addressbook-web-tests" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <envs />
-      <properties />
-      <listeners />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="TestNG.RegistrationJamesTests">
     <configuration default="false" name="HbConnectionTest" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -2383,6 +2360,72 @@
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/addressbook-web-tests" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="false" name="RegistrationTests" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="java_mypft.mantis.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="mantis-tests_test" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" value="java_mypft.mantis.tests" />
+      <option name="MAIN_CLASS_NAME" value="java_mypft.mantis.tests.RegistrationTests" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/mantis-tests" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="false" name="RegistrationJamesTests" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="java_mypft.mantis.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="mantis-tests_test" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" value="java_mypft.mantis.tests" />
+      <option name="MAIN_CLASS_NAME" value="java_mypft.mantis.tests.RegistrationJamesTests" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/mantis-tests" />
       <option name="OUTPUT_DIRECTORY" />
       <option name="ANNOTATION_TYPE" />
       <option name="ENV_VARIABLES" />
@@ -2813,19 +2856,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="TestNG.SoapTests.testGetProjects" />
-      <item index="1" class="java.lang.String" itemvalue="TestNG.DbConnectionTest" />
-      <item index="2" class="java.lang.String" itemvalue="TestNG.HbConnectionTest" />
-      <item index="3" class="java.lang.String" itemvalue="TestNG.GroupModificationTests" />
-      <item index="4" class="java.lang.String" itemvalue="TestNG.GroupCreationTests" />
+      <item index="0" class="java.lang.String" itemvalue="TestNG.HbConnectionTest" />
+      <item index="1" class="java.lang.String" itemvalue="TestNG.GroupModificationTests" />
+      <item index="2" class="java.lang.String" itemvalue="TestNG.GroupCreationTests" />
+      <item index="3" class="java.lang.String" itemvalue="TestNG.RegistrationTests" />
+      <item index="4" class="java.lang.String" itemvalue="TestNG.RegistrationJamesTests" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="TestNG.GroupCreationTests" />
-        <item index="1" class="java.lang.String" itemvalue="TestNG.GroupModificationTests" />
-        <item index="2" class="java.lang.String" itemvalue="TestNG.HbConnectionTest" />
-        <item index="3" class="java.lang.String" itemvalue="TestNG.DbConnectionTest" />
-        <item index="4" class="java.lang.String" itemvalue="TestNG.SoapTests.testGetProjects" />
+        <item index="0" class="java.lang.String" itemvalue="TestNG.RegistrationJamesTests" />
+        <item index="1" class="java.lang.String" itemvalue="TestNG.RegistrationTests" />
+        <item index="2" class="java.lang.String" itemvalue="TestNG.GroupCreationTests" />
+        <item index="3" class="java.lang.String" itemvalue="TestNG.GroupModificationTests" />
+        <item index="4" class="java.lang.String" itemvalue="TestNG.HbConnectionTest" />
       </list>
     </recent_temporary>
   </component>
@@ -2866,7 +2909,7 @@
       <workItem from="1494224496871" duration="8828000" />
       <workItem from="1494240426482" duration="8859000" />
       <workItem from="1494315043827" duration="22765000" />
-      <workItem from="1494361287672" duration="28053000" />
+      <workItem from="1494361287672" duration="36185000" />
     </task>
     <task id="LOCAL-00001" summary="Реализован сценарий смены пароля пользователю баг-трекера MantisBT администратором системы">
       <created>1494084957251</created>
@@ -2896,13 +2939,17 @@
       <option name="project" value="LOCAL" />
       <updated>1494338350288</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="добавлены коментарии к тестам в модуле mantis-tests">
+      <created>1494443083457</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1494443083457</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="DbConnectionTest - 2017.05.10 at 17h 24m 53s.xml">
-      <configuration name="DbConnectionTest" configurationId="TestNG" />
-    </history-entry>
     <history-entry file="GroupCreationTests - 2017.05.10 at 17h 25m 37s.xml">
       <configuration name="GroupCreationTests" configurationId="TestNG" />
     </history-entry>
@@ -2912,30 +2959,34 @@
     <history-entry file="HbConnectionTest - 2017.05.10 at 17h 25m 04s.xml">
       <configuration name="HbConnectionTest" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="RestTests_testCreateIssue - 2017.05.09 at 16h 32m 55s.xml">
-      <configuration name="RestTests.testCreateIssue" configurationId="TestNG" />
+    <history-entry file="RegistrationJamesTests - 2017.05.11 at 12h 15m 10s.xml">
+      <configuration name="RegistrationJamesTests" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="RestTests_testCreateIssue - 2017.05.09 at 16h 33m 55s.xml">
-      <configuration name="RestTests.testCreateIssue" configurationId="TestNG" />
+    <history-entry file="RegistrationJamesTests - 2017.05.11 at 12h 16m 00s.xml">
+      <configuration name="RegistrationJamesTests" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="RestTests_testCreateIssue - 2017.05.09 at 16h 35m 06s.xml">
-      <configuration name="RestTests.testCreateIssue" configurationId="TestNG" />
+    <history-entry file="RegistrationJamesTests - 2017.05.11 at 12h 16m 55s.xml">
+      <configuration name="RegistrationJamesTests" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="RestTests_testCreateIssue - 2017.05.09 at 16h 44m 22s.xml">
-      <configuration name="RestTests.testCreateIssue" configurationId="TestNG" />
+    <history-entry file="RegistrationTests - 2017.05.11 at 10h 52m 41s.xml">
+      <configuration name="RegistrationTests" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="RestTests_testCreateIssue - 2017.05.09 at 16h 47m 44s.xml">
-      <configuration name="RestTests.testCreateIssue" configurationId="TestNG" />
+    <history-entry file="RegistrationTests - 2017.05.11 at 10h 52m 57s.xml">
+      <configuration name="RegistrationTests" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="SoapTests_testGetProjects - 2017.05.09 at 16h 53m 20s.xml">
-      <configuration name="SoapTests.testGetProjects" configurationId="TestNG" />
+    <history-entry file="RegistrationTests - 2017.05.11 at 10h 53m 28s.xml">
+      <configuration name="RegistrationTests" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="RegistrationTests - 2017.05.11 at 10h 57m 37s.xml">
+      <configuration name="RegistrationTests" configurationId="TestNG" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="212509000" />
+    <option name="totallyTimeSpent" value="220641000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="58" y="0" width="1856" height="885" extended-state="0" />
+    <frame x="64" y="0" width="1856" height="722" extended-state="1" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2957,9 +3008,9 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33079433" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43870968" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.65753424" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2973274" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2973274" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23484014" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -3020,7 +3071,8 @@
     <MESSAGE value="Creation SoapTests" />
     <MESSAGE value="Реализована интеграция теста LoginTests с баг-трекером MantisBT" />
     <MESSAGE value="Реализована интеграция тестов LoginTests, RegistrationTests, ReplacePasswordTests, SoapTests с баг-трекером MantisBT;&#10;Реализована интеграция тестов RestTests с баг-трекером Bugify" />
-    <option name="LAST_COMMIT_MESSAGE" value="Реализована интеграция тестов LoginTests, RegistrationTests, ReplacePasswordTests, SoapTests с баг-трекером MantisBT;&#10;Реализована интеграция тестов RestTests с баг-трекером Bugify" />
+    <MESSAGE value="добавлены коментарии к тестам в модуле mantis-tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавлены коментарии к тестам в модуле mantis-tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3038,7 +3090,7 @@
           <option name="timeStamp" value="59" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="70" />
+      <option name="time" value="71" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="TestNG">
@@ -3061,29 +3113,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mantis-tests/src/test/resources/config_inc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mantis-tests/src/test/resources/hibernate.cfg.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="84" lean-forward="true" selection-start-line="24" selection-start-column="84" selection-end-line="24" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Java/jdk1.8.0_121/src.zip!/java/util/Properties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="967" column="18" lean-forward="false" selection-start-line="967" selection-start-column="18" selection-end-line="967" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/SoapHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -3413,27 +3442,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/MailHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="58" column="60" lean-forward="true" selection-start-line="58" selection-start-column="60" selection-end-line="58" selection-end-column="60" />
-          <folding>
-            <element signature="e#3624#3625#0" expanded="true" />
-            <element signature="e#3647#3648#0" expanded="true" />
-            <element signature="e#3730#3731#0" expanded="true" />
-            <element signature="e#3752#3753#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/RegistrationHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="126" lean-forward="false" selection-start-line="20" selection-start-column="126" selection-end-line="20" selection-end-column="126" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Java/jdk1.8.0_121/src.zip!/java/lang/String.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -3442,30 +3450,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/RegistrationTests.java">
+    <entry file="file://$PROJECT_DIR$/mantis-tests/src/test/resources/config_inc.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="54" column="80" lean-forward="false" selection-start-line="54" selection-start-column="80" selection-end-line="54" selection-end-column="80" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2618#2619#0" expanded="true" />
-            <element signature="e#2645#2646#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/RegistrationJamesTests.java">
+    <entry file="file://$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/DbHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="25" column="4" lean-forward="false" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
+        <state relative-caret-position="408">
+          <caret line="29" column="126" lean-forward="true" selection-start-line="29" selection-start-column="126" selection-end-line="29" selection-end-column="126" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/MailHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1105">
+          <caret line="73" column="52" lean-forward="true" selection-start-line="73" selection-start-column="52" selection-end-line="73" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/ApplicationManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="96" column="60" lean-forward="true" selection-start-line="96" selection-start-column="60" selection-end-line="96" selection-end-column="60" />
+        <state relative-caret-position="84">
+          <caret line="49" column="21" lean-forward="false" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+          <folding>
+            <element signature="e#1633#1634#0" expanded="true" />
+            <element signature="e#1671#1672#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/RegistrationHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="36" lean-forward="false" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/RegistrationTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="30" column="97" lean-forward="true" selection-start-line="30" selection-start-column="97" selection-end-line="30" selection-end-column="97" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/JamesHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="135" column="45" lean-forward="true" selection-start-line="135" selection-start-column="45" selection-end-line="135" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/tests/RegistrationJamesTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="15" column="2" lean-forward="true" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
           <folding />
         </state>
       </provider>

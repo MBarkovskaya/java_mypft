@@ -22,9 +22,12 @@ public class RegistrationHelper extends HelperBase {
   }
 
   public void finish(String confirmationLink, String password) {
+    //проходим по ссылке
     wd.get(confirmationLink);
+    //заполняем два поля (пароль и подтверждающий пароль)
     type(By.name("password"), password);
     type(By.name("password_confirm"), password);
+    //нажимаем на кнопку update User
     click(By.xpath("//span[@class='submit-button']/button"));
   }
 }
