@@ -32,20 +32,20 @@ public class RemoveContactFromGroupTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(Object[] args) {
-    app.goTo().GroupPage();
-    Groups groups = app.db().groups();
+    appLocal.get().goTo().GroupPage();
+    Groups groups = appLocal.get().db().groups();
     if (groups.size() == 0) {
-      app.group().create((GroupData) args[1]);
-      groupData = app.db().groups().iterator().next();
+      appLocal.get().group().create((GroupData) args[1]);
+      groupData = appLocal.get().db().groups().iterator().next();
       groupId = groupData.getId();
     } else {
       groupId = groups.iterator().next().getId();
-      groupData = app.db().groupById(groupId);
+      groupData = appLocal.get().db().groupById(groupId);
     }
-    app.goTo().HomePage();
-    Contacts contacts = app.db().contacts();
-    app.contact().selectContactGroupById(groupId);
-    Contacts groupContacts = app.db().groupContacts(groupId);
+    appLocal.get().goTo().HomePage();
+    Contacts contacts = appLocal.get().db().contacts();
+    appLocal.get().contact().selectContactGroupById(groupId);
+    Contacts groupContacts = appLocal.get().db().groupContacts(groupId);
     if (contacts.size() > 0) {
       for (ContactData contact : contacts) {
         if (groupContacts.contains(contact)) {
@@ -56,11 +56,11 @@ public class RemoveContactFromGroupTests extends TestBase {
       }
     }
     if (contactData == null) {
-      app.goTo().HomePage();
+      appLocal.get().goTo().HomePage();
       contactData = (ContactData) args[0];
       File photo = new File("src/test/resources/k.png");
-      app.contact().create(contactData.withPhoto(photo).inGroup(groupData).withId(groupId), true);
-      contactId = app.db().contacts().stream().mapToInt((c) -> c.getId()).max().getAsInt();
+      appLocal.get().contact().create(contactData.withPhoto(photo).inGroup(groupData).withId(groupId), true);
+      contactId = appLocal.get().db().contacts().stream().mapToInt((c) -> c.getId()).max().getAsInt();
       contactData.withId(contactId);
     }
 
@@ -69,14 +69,14 @@ public class RemoveContactFromGroupTests extends TestBase {
 
   @Test(dataProvider = "data")
   public void testRemoveContactFromGroup(ContactData contact, GroupData group) {
-    app.goTo().HomePage();
-    app.contact().selectContactGroupById(groupId);
-    Contacts before = app.db().groupContacts(groupId);
-    app.contact().removeFromGroup(contactId, groupId);
-    Contacts after = app.db().groupContacts(groupId);
+    appLocal.get().goTo().HomePage();
+    appLocal.get().contact().selectContactGroupById(groupId);
+    Contacts before = appLocal.get().db().groupContacts(groupId);
+    appLocal.get().contact().removeFromGroup(contactId, groupId);
+    Contacts after = appLocal.get().db().groupContacts(groupId);
     assertEquals(after.size(), before.size() - 1);
-    app.goTo().HomePage();
-    app.contact().selectContactAll();
+    appLocal.get().goTo().HomePage();
+    appLocal.get().contact().selectContactAll();
     verifyContactListInUI();
   }
 

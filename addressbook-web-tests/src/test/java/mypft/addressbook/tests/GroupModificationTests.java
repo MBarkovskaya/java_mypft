@@ -29,9 +29,9 @@ public class GroupModificationTests extends TestBase {
   //начинаем с проверки предусловия
   public void ensurePreconditions(Object[] args) {
     //проверку условия выполняем в обход пользовательского интерфейса (быстро) через прямое обращение к бд
-    if (app.db().groups().size() == 0) {
-      app.goTo().GroupPage();
-      app.group().create((GroupData) args[0]);
+    if (appLocal.get().db().groups().size() == 0) {
+      appLocal.get().goTo().GroupPage();
+      appLocal.get().group().create((GroupData) args[0]);
     }
   }
 
@@ -39,16 +39,16 @@ public class GroupModificationTests extends TestBase {
 
   public void testGroupModification(GroupData group) {
     //список групп до и после получаем напрямую из бд
-    Groups before = app.db().groups();
+    Groups before = appLocal.get().db().groups();
     GroupData originalGroup = before.iterator().next();
     GroupData modifiedGroup = GroupDataGenerator.generateRandomGroup();
     modifiedGroup.withId(originalGroup.getId());
-    app.goTo().GroupPage();
-    app.group().modify(modifiedGroup);
+    appLocal.get().goTo().GroupPage();
+    appLocal.get().group().modify(modifiedGroup);
     //хэширование в данном случае уже будет медленнее выполняться, чем загрузка из бд
     //для минимального контроля за количеством групп оставляем эту проверку
-    assertThat(app.group().count(), equalTo(before.size()));
-    Groups after = app.db().groups();
+    assertThat(appLocal.get().group().count(), equalTo(before.size()));
+    Groups after = appLocal.get().db().groups();
     assertThat(after, equalTo(before.without(originalGroup).withAdded(modifiedGroup)));
 
     verifyGroupListInUI();

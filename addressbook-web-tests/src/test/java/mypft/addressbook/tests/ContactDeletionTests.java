@@ -26,20 +26,20 @@ public class ContactDeletionTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(Object[] args) {
-    app.goTo().HomePage();
-    if (app.db().contacts().size() == 0) {
-      app.contact().create((ContactData) args[0], true);
+    appLocal.get().goTo().HomePage();
+    if (appLocal.get().db().contacts().size() == 0) {
+      appLocal.get().contact().create((ContactData) args[0], true);
     }
   }
 
   @Test(dataProvider = "validContacts")
   public void testContactDeletion(ContactData contact) throws InterruptedException {
-    Contacts before = app.db().contacts();
+    Contacts before = appLocal.get().db().contacts();
     contact.withId(before.stream().mapToInt(ContactData::getId).max().getAsInt());
     ContactData deletedContact = before.iterator().next();
-    app.contact().delete(deletedContact);
-    assertThat(app.contact().count(), equalTo(before.size() - 1));
-    Contacts after = app.db().contacts();
+    appLocal.get().contact().delete(deletedContact);
+    assertThat(appLocal.get().contact().count(), equalTo(before.size() - 1));
+    Contacts after = appLocal.get().db().contacts();
     assertThat(after, equalTo(before.without(deletedContact)));
     verifyContactListInUI();
   }

@@ -38,17 +38,17 @@ public class ContactAddressTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions(Object[] args) {
 
-    app.goTo().HomePage();
-    if (app.db().contacts().size() == 0) {
-      app.contact().create((ContactData) args[0], true);
+    appLocal.get().goTo().HomePage();
+    if (appLocal.get().db().contacts().size() == 0) {
+      appLocal.get().contact().create((ContactData) args[0], true);
     }
   }
 
   @Test(dataProvider = "validContactsFromJson")
   public void testContactAddress(ContactData contact) {
-    Contacts contacts = app.db().contacts();
+    Contacts contacts = appLocal.get().db().contacts();
     contact.withId(contacts.stream().mapToInt(ContactData::getId).max().getAsInt());
-    String contactInfoFromEditForm = app.contact().addressInfoFromEditForm(contact.getId());
+    String contactInfoFromEditForm = appLocal.get().contact().addressInfoFromEditForm(contact.getId());
     assertThat(multiLineStringToString(contact.getAddress()+contact.getAddress2()), equalTo(multiLineStringToString(contactInfoFromEditForm)));
     verifyContactListInUI();
   }

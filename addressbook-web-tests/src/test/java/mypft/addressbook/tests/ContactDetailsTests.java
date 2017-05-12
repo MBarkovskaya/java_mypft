@@ -33,22 +33,22 @@ public class ContactDetailsTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(Object[] args) {
-    app.goTo().HomePage();
-    Contacts contacts = app.db().contacts();
+    appLocal.get().goTo().HomePage();
+    Contacts contacts = appLocal.get().db().contacts();
     File photo = new File("src/test/resources/k.png");
     if (contacts.size() == 0) {
-      app.contact().create(((ContactData) args[0]).withPhoto(photo), true);
+      appLocal.get().contact().create(((ContactData) args[0]).withPhoto(photo), true);
     }
   }
 
   @Test(dataProvider = "validContactsFromJson")
   public void testContactPreview(ContactData contact) {
-    Contacts contacts = app.db().contacts();
+    Contacts contacts = appLocal.get().db().contacts();
     contact.withId(contacts.stream().mapToInt(ContactData::getId).max().getAsInt());
-    ContactData editcontact = app.contact().edit(contact);
+    ContactData editcontact = appLocal.get().contact().edit(contact);
     File photo = new File("src/test/resources/k.png");
     editcontact.withPhoto(photo);
-    String contactinfoFromDetailsForm = app.contact().infoFromDetailsForm(contact.getId());
+    String contactinfoFromDetailsForm = appLocal.get().contact().infoFromDetailsForm(contact.getId());
     assertThat(mergeContact(editcontact), equalTo(contactinfoFromDetailsForm));
     verifyContactListInUI();
   }

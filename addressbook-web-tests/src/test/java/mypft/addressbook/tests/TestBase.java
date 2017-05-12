@@ -25,19 +25,19 @@ public class TestBase {
 
   public TestDataLoader loader = new TestDataLoader();
 
+  protected static final ThreadLocal<ApplicationManager> appLocal = ThreadLocal.withInitial(() -> new ApplicationManager(System.getProperty("browser", BrowserType.CHROME)));
+
   Logger logger = LoggerFactory.getLogger(TestBase.class);
 
-  protected static final ApplicationManager app
-          = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
   @BeforeSuite
   public void setUp() throws Exception {
-    app.init();
+    appLocal.get().init();
   }
 
   @AfterSuite(alwaysRun = true)
   public void tearDown() {
-    app.stop();
+    appLocal.get().stop();
   }
 
   @BeforeMethod
@@ -59,8 +59,8 @@ public class TestBase {
     // или можно по сокращенному 2) варианту - функция getBoolean() получает системное свойство с заданным именем
     //и автоматически преобразуут его в булевскую величину
     if (Boolean.getBoolean("verifyUI")) {
-      Groups dbGroups = app.db().groups();
-      Groups uiGroups = app.group().all();
+      Groups dbGroups = appLocal.get().db().groups();
+      Groups uiGroups = appLocal.get().group().all();
       //упрощаем объекты, которые загружаем из бд, чтобы они совпадали с объектами, загруженными из UI
       // анонимная функция map, которая на вход принимает группу, а на выходе новый объект с идентификатором таким же как у преобразуемого объекта, с именем
       //таким же как у преобразуемого объекта
@@ -73,8 +73,8 @@ public class TestBase {
 
   public void verifyContactListInUI() {
     if (Boolean.getBoolean("verifyUI")) {
-      Contacts dbContacts = app.db().contacts();
-      Contacts uiContacts = app.contact().all();
+      Contacts dbContacts = appLocal.get().db().contacts();
+      Contacts uiContacts = appLocal.get().contact().all();
       assertThat(flatSet(uiContacts), equalTo(flatSet(dbContacts)));
     }
   }

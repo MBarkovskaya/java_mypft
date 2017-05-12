@@ -28,22 +28,22 @@ public class ContactCreationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(Object[] args) {
-    Groups groups = app.db().groups();
+    Groups groups = appLocal.get().db().groups();
     if (groups.size() == 0) {
-      app.group().create((GroupData) args[1]);
+      appLocal.get().group().create((GroupData) args[1]);
     }
   }
 
   @Test(dataProvider = "data")
   public void testContactCreation(ContactData contact, GroupData group) {
-    Groups groups = app.db().groups();
-    Contacts before = app.db().contacts();
+    Groups groups = appLocal.get().db().groups();
+    Contacts before = appLocal.get().db().contacts();
     File photo = new File("src/test/resources/k.png");
     contact.withPhoto(photo).inGroup(groups.iterator().next());
-    app.goTo().HomePage();
-    app.contact().create(contact, true);
-    assertThat(app.contact().count(), equalTo(before.size() + 1));
-    Contacts after = app.db().contacts();
+    appLocal.get().goTo().HomePage();
+    appLocal.get().contact().create(contact, true);
+    assertThat(appLocal.get().contact().count(), equalTo(before.size() + 1));
+    Contacts after = appLocal.get().db().contacts();
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
     verifyContactListInUI();

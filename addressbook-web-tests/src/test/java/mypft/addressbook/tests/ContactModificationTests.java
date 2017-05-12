@@ -28,23 +28,23 @@ public class ContactModificationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(Object[] args) {
-    app.goTo().HomePage();
-    if (app.db().contacts().size() == 0) {
+    appLocal.get().goTo().HomePage();
+    if (appLocal.get().db().contacts().size() == 0) {
       File photo = new File("src/test/resources/k.png");
-      app.contact().create(((ContactData) args[0]).withPhoto(photo), true);
+      appLocal.get().contact().create(((ContactData) args[0]).withPhoto(photo), true);
     }
   }
 
   @Test(dataProvider = "validContacts")
   public void testContactModification(ContactData contact) {
-    Contacts before = app.db().contacts();
+    Contacts before = appLocal.get().db().contacts();
     ContactData originalContact = before.iterator().next();
     File photo = new File("src/test/resources/k.png");
     ContactData modifiedContact = ContactDataGenerator.generateRandomContact().withPhoto(photo);
     modifiedContact.withId(originalContact.getId());
-    app.contact().modify(modifiedContact);
-    assertThat(app.contact().count(), equalTo(before.size()));
-    Contacts after = app.db().contacts();
+    appLocal.get().contact().modify(modifiedContact);
+    assertThat(appLocal.get().contact().count(), equalTo(before.size()));
+    Contacts after = appLocal.get().db().contacts();
     assertThat(after, equalTo(before.without(originalContact).withAdded(modifiedContact)));
     verifyContactListInUI();
   }

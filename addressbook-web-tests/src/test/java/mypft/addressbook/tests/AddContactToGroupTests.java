@@ -33,20 +33,20 @@ public class AddContactToGroupTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(Object[] args) {
-    app.goTo().HomePage();
-    app.contact().selectContactAll();
-    Contacts contacts = app.db().contacts();
+    appLocal.get().goTo().HomePage();
+    appLocal.get().contact().selectContactAll();
+    Contacts contacts = appLocal.get().db().contacts();
     if (contacts.size() == 0) {
       File photo = new File("src/test/resources/k.png");
-      app.contact().create(((ContactData) args[0]).withPhoto(photo), true);
-      contactData = app.db().contacts().iterator().next();
+      appLocal.get().contact().create(((ContactData) args[0]).withPhoto(photo), true);
+      contactData = appLocal.get().db().contacts().iterator().next();
       contactId = contactData.getId();
     } else {
       contactId = contacts.iterator().next().getId();
-      contactData = app.db().contactById(contactId);
+      contactData = appLocal.get().db().contactById(contactId);
     }
-    app.goTo().GroupPage();
-    Groups groups = app.db().groups();
+    appLocal.get().goTo().GroupPage();
+    Groups groups = appLocal.get().db().groups();
     if (groups.size() > 0) {
       for (GroupData group : groups) {
         if (!contactData.getGroups().contains(group)) {
@@ -57,28 +57,28 @@ public class AddContactToGroupTests extends TestBase {
       }
     }
     if (groupData == null) {
-      app.goTo().GroupPage();
+      appLocal.get().goTo().GroupPage();
       groupData = (GroupData) args[1];
-      app.group().create(groupData);
-      groupId = app.db().groups().stream().mapToInt((g) -> g.getId()).max().getAsInt();
+      appLocal.get().group().create(groupData);
+      groupId = appLocal.get().db().groups().stream().mapToInt((g) -> g.getId()).max().getAsInt();
       groupData.withId(groupId);
     }
   }
 
   @Test(dataProvider = "data")
   public void testAddContactToGroup(ContactData contact, GroupData group) {
-    app.goTo().HomePage();
-    app.contact().selectContactGroupById(groupId);
-    Contacts before = app.db().groupContacts(groupId);
-    app.goTo().HomePage();
-    app.contact().selectContactAll();
-    app.contact().selectContactById(contactId);
-    app.contact().addToGroup(groupId, contactId);
-    assertThat(app.contact().count(), equalTo(before.size() + 1));
-    Contacts after = app.db().groupContacts(groupId);
+    appLocal.get().goTo().HomePage();
+    appLocal.get().contact().selectContactGroupById(groupId);
+    Contacts before = appLocal.get().db().groupContacts(groupId);
+    appLocal.get().goTo().HomePage();
+    appLocal.get().contact().selectContactAll();
+    appLocal.get().contact().selectContactById(contactId);
+    appLocal.get().contact().addToGroup(groupId, contactId);
+    assertThat(appLocal.get().contact().count(), equalTo(before.size() + 1));
+    Contacts after = appLocal.get().db().groupContacts(groupId);
     assertThat("Group doesn't contains required contact", after.contains(contactData));
-    app.goTo().HomePage();
-    app.contact().selectContactAll();
+    appLocal.get().goTo().HomePage();
+    appLocal.get().contact().selectContactAll();
     verifyContactListInUI();
   }
 }
