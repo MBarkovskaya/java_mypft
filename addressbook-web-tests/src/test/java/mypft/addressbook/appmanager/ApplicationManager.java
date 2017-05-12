@@ -1,6 +1,7 @@
 package mypft.addressbook.appmanager;
 
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -61,6 +62,8 @@ public class ApplicationManager {
       //и устанавливаем там браузер, а селениум сервер будет сам разбираться какой драйвер он должен использовать для того
       // чтобы запустить конкретный сервер
       capabilities.setBrowserName(browser);
+      //помимо желаемого браузера можно указать желаемую платформу
+      capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win8")));
       wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
     }
 
