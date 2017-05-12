@@ -1,4 +1,6 @@
 apply plugin: 'java'
+apply plugin: 'application'
+mainClassName = "mypft.sandbox.MyFirstProgram"
 
 repositories {
     mavenCentral()
@@ -6,5 +8,8 @@ repositories {
 
 dependencies {
     compile 'org.testng:testng:6.11'
-    compile 'com.jcabi:jcabi-github:0.31'
+}
+
+test {
+    useTestNG()
 }

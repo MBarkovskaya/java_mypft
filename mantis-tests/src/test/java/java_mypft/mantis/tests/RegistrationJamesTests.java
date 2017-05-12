@@ -15,7 +15,7 @@ public class RegistrationJamesTests extends TestBase {
   //для теста используем отдельностоящий почтовый сервер
 
   @Test
-  public void testRegistration() throws IOException, MessagingException, ServiceException {
+  public void testRegistrationJames() throws IOException, MessagingException, ServiceException {
     long now = System.currentTimeMillis();
     String user = String.format("user%s", now);
     String password = "password";
