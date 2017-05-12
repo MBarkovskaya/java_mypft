@@ -3,9 +3,7 @@
 <suite name="Suite1" verbose="1" >
     <test name="Groups" >
         <classes>
-            <class name="mypft.addressbook.tests.GroupCreationTests" />
             <class name="mypft.addressbook.tests.GroupModificationTests" />
-            <class name="mypft.addressbook.tests.GroupDeletionTests" />
         </classes>
     </test>
 
