@@ -17,16 +17,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactEmailTests extends TestBase {
 
-  @DataProvider
-  public Iterator<Object[]> validContacts() throws IOException {
-    return loader.validContacts();
-  }
-
-  @DataProvider
-  public Iterator<Object[]> validContactsFromJson() throws IOException {
-    return loader.validContactsFromJson();
-  }
-
   @BeforeMethod
   public void ensurePreconditions(Object[] args) {
     appLocal.get().goTo().HomePage();
@@ -37,7 +27,7 @@ public class ContactEmailTests extends TestBase {
     }
   }
 
-  @Test(dataProvider = "validContactsFromJson")
+  @Test(dataProvider = "dataIteratorContactsfromJson", dataProviderClass = TestDataLoader.class)
   public void testContactEmail(ContactData contact) {
     Contacts contacts = appLocal.get().db().contacts();
     contact.withId(contacts.stream().mapToInt(ContactData::getId).max().getAsInt());

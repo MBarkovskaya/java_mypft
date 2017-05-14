@@ -18,8 +18,8 @@ public class AddContactToGroupTests extends TestBase {
 
   private GroupData groupData;
   private ContactData contactData;
-  int contactId;
-  int groupId;
+  private int contactId;
+  private int groupId;
 
   @DataProvider
   public Object[][] data() throws IOException {
@@ -31,14 +31,13 @@ public class AddContactToGroupTests extends TestBase {
     return new Object[][] {{loader.validContacts().next()[0], loader.validGroups().next()[0]}};
   }
 
-  @BeforeMethod
-  public void ensurePreconditions(Object[] args) {
+  private void ensurePreconditionsAddToGroup(ContactData contact, GroupData group) {
     appLocal.get().goTo().HomePage();
     appLocal.get().contact().selectContactAll();
     Contacts contacts = appLocal.get().db().contacts();
     if (contacts.size() == 0) {
       File photo = new File("src/test/resources/k.png");
-      appLocal.get().contact().create(((ContactData) args[0]).withPhoto(photo), true);
+      appLocal.get().contact().create((contact.withPhoto(photo)), true);
       contactData = appLocal.get().db().contacts().iterator().next();
       contactId = contactData.getId();
     } else {
@@ -48,8 +47,8 @@ public class AddContactToGroupTests extends TestBase {
     appLocal.get().goTo().GroupPage();
     Groups groups = appLocal.get().db().groups();
     if (groups.size() > 0) {
-      for (GroupData group : groups) {
-        if (!contactData.getGroups().contains(group)) {
+      for (GroupData item : groups) {
+        if (!contactData.getGroups().contains(item)) {
           groupData = group;
           groupId = groupData.getId();
           break;
@@ -58,7 +57,7 @@ public class AddContactToGroupTests extends TestBase {
     }
     if (groupData == null) {
       appLocal.get().goTo().GroupPage();
-      groupData = (GroupData) args[1];
+      groupData = group;
       appLocal.get().group().create(groupData);
       groupId = appLocal.get().db().groups().stream().mapToInt((g) -> g.getId()).max().getAsInt();
       groupData.withId(groupId);
@@ -67,6 +66,7 @@ public class AddContactToGroupTests extends TestBase {
 
   @Test(dataProvider = "data")
   public void testAddContactToGroup(ContactData contact, GroupData group) {
+    ensurePreconditionsAddToGroup(contact, group);
     appLocal.get().goTo().HomePage();
     appLocal.get().contact().selectContactGroupById(groupId);
     Contacts before = appLocal.get().db().groupContacts(groupId);

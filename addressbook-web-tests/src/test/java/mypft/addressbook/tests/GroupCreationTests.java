@@ -13,17 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTests extends TestBase {
 
-  @DataProvider
-  public Iterator<Object[]> validGroups() throws IOException {
-    return loader.validGroups();
-  }
-
-  @DataProvider
-  public Iterator<Object[]> validGroupsFromJson() throws IOException {
-    return loader.validGroupsFromJson();
-  }
-
-  @Test(dataProvider = "validGroupsFromJson")
+  @Test(dataProvider = "dataIteratorGroups", dataProviderClass = TestDataLoader.class)
   public void testGroupCreation(GroupData group) {
     appLocal.get().goTo().GroupPage();
     Groups before = appLocal.get().db().groups();
@@ -34,7 +24,7 @@ public class GroupCreationTests extends TestBase {
             before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
 
-  @Test
+  @Test(dataProvider = "dataIteratorGroups", dataProviderClass = TestDataLoader.class)
   public void testBadGroupCreation() {
     appLocal.get().goTo().GroupPage();
     Groups before = appLocal.get().db().groups();

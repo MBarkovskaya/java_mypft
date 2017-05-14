@@ -22,6 +22,24 @@ dependencies {
     compile "ru.yandex.qatools.allure:allure-testng-adaptor:1.4.0.RC4"
 }
 
+task testExample(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng-example.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('platform')) {
+        systemProperty 'platform', "${platform}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+    if (project.hasProperty('verifyUI')) {
+        systemProperty 'verifyUI', "${verifyUI}"
+    }
+}
+
 task testGroups(type: Test) {
     useTestNG {
         suites 'src/test/resources/testng-groups.xml'

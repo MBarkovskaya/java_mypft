@@ -15,16 +15,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupModificationTests extends TestBase {
 
-  @DataProvider
-  public Iterator<Object[]> validGroups() throws IOException {
-    return loader.validGroups();
-  }
-
-  @DataProvider
-  public Iterator<Object[]> validGroupsFromJson() throws IOException {
-    return loader.validGroupsFromJson();
-  }
-
   @BeforeMethod
   //начинаем с проверки предусловия
   public void ensurePreconditions(Object[] args) {
@@ -35,7 +25,7 @@ public class GroupModificationTests extends TestBase {
     }
   }
 
-  @Test(dataProvider = "validGroups")
+  @Test(dataProvider = "dataIteratorGroupsfromJson", dataProviderClass = TestDataLoader.class)
 
   public void testGroupModification(GroupData group) {
     //список групп до и после получаем напрямую из бд

@@ -16,16 +16,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTests extends TestBase {
 
-  @DataProvider
-  public Object[][] data() throws IOException {
-    return new Object[][]{{loader.validContacts().next()[0], loader.validGroups().next()[0]}};
-  }
-
-  @DataProvider
-  public Object[][] datafromJson() throws IOException {
-    return new Object[][]{{loader.validContacts().next()[0], loader.validGroups().next()[0]}};
-  }
-
   @BeforeMethod
   public void ensurePreconditions(Object[] args) {
     Groups groups = appLocal.get().db().groups();
@@ -34,7 +24,7 @@ public class ContactCreationTests extends TestBase {
     }
   }
 
-  @Test(dataProvider = "data")
+  @Test(dataProvider = "dataArray", dataProviderClass = TestDataLoader.class)
   public void testContactCreation(ContactData contact, GroupData group) {
     Groups groups = appLocal.get().db().groups();
     Contacts before = appLocal.get().db().contacts();

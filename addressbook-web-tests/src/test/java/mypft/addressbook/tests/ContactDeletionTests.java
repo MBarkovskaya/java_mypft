@@ -32,7 +32,7 @@ public class ContactDeletionTests extends TestBase {
     }
   }
 
-  @Test(dataProvider = "validContacts")
+  @Test(dataProvider = "dataIteratorContactsfromJson", dataProviderClass = TestDataLoader.class)
   public void testContactDeletion(ContactData contact) throws InterruptedException {
     Contacts before = appLocal.get().db().contacts();
     contact.withId(before.stream().mapToInt(ContactData::getId).max().getAsInt());

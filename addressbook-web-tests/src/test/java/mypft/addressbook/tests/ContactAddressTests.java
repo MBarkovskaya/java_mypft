@@ -25,34 +25,23 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactAddressTests extends TestBase {
 
-  @DataProvider
-  public Iterator<Object[]> validContacts() throws IOException {
-    return loader.validContacts();
-  }
-
-  @DataProvider
-  public Iterator<Object[]> validContactsFromJson() throws IOException {
-    return loader.validContactsFromJson();
-  }
-
   @BeforeMethod
-  public void ensurePreconditions(Object[] args) {
-
+  public void ensurePreconditionsAddress(ContactData contact) {
     appLocal.get().goTo().HomePage();
     if (appLocal.get().db().contacts().size() == 0) {
-      appLocal.get().contact().create((ContactData) args[0], true);
+      appLocal.get().contact().create(contact, true);
     }
   }
 
-  @Test(dataProvider = "validContactsFromJson")
+  @Test(dataProvider = "dataIteratorContactsfromJson", dataProviderClass = TestDataLoader.class)
   public void testContactAddress(ContactData contact) {
     Contacts contacts = appLocal.get().db().contacts();
     contact.withId(contacts.stream().mapToInt(ContactData::getId).max().getAsInt());
     String contactInfoFromEditForm = appLocal.get().contact().addressInfoFromEditForm(contact.getId());
-    assertThat(multiLineStringToString(contact.getAddress()+contact.getAddress2()), equalTo(multiLineStringToString(contactInfoFromEditForm)));
+    assertThat(multiLineAddressStringToString(contact.getAddress()+contact.getAddress2()), equalTo(multiLineAddressStringToString(contactInfoFromEditForm)));
     verifyContactListInUI();
   }
-  private static String multiLineStringToString(String multiline) {
+  private static String multiLineAddressStringToString(String multiline) {
     return Arrays.stream(multiline.split("\n")).filter(s -> !s.equals("")).collect(Collectors.joining(";"));
   }
 

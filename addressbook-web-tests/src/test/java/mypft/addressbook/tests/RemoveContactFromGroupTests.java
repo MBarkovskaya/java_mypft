@@ -30,12 +30,11 @@ public class RemoveContactFromGroupTests extends TestBase {
     return new Object[][] {{loader.validContacts().next()[0], loader.validGroups().next()[0]}};
   }
 
-  @BeforeMethod
-  public void ensurePreconditions(Object[] args) {
+   private void ensurePreconditionsRemoveFromGroup(GroupData group, ContactData contact) {
     appLocal.get().goTo().GroupPage();
     Groups groups = appLocal.get().db().groups();
     if (groups.size() == 0) {
-      appLocal.get().group().create((GroupData) args[1]);
+      appLocal.get().group().create(group);
       groupData = appLocal.get().db().groups().iterator().next();
       groupId = groupData.getId();
     } else {
@@ -47,8 +46,8 @@ public class RemoveContactFromGroupTests extends TestBase {
     appLocal.get().contact().selectContactGroupById(groupId);
     Contacts groupContacts = appLocal.get().db().groupContacts(groupId);
     if (contacts.size() > 0) {
-      for (ContactData contact : contacts) {
-        if (groupContacts.contains(contact)) {
+      for (ContactData item : contacts) {
+        if (groupContacts.contains(item)) {
           contactData = contact;
           contactId = contactData.getId();
           break;
@@ -57,7 +56,7 @@ public class RemoveContactFromGroupTests extends TestBase {
     }
     if (contactData == null) {
       appLocal.get().goTo().HomePage();
-      contactData = (ContactData) args[0];
+      contactData = contact;
       File photo = new File("src/test/resources/k.png");
       appLocal.get().contact().create(contactData.withPhoto(photo).inGroup(groupData).withId(groupId), true);
       contactId = appLocal.get().db().contacts().stream().mapToInt((c) -> c.getId()).max().getAsInt();
@@ -69,6 +68,7 @@ public class RemoveContactFromGroupTests extends TestBase {
 
   @Test(dataProvider = "data")
   public void testRemoveContactFromGroup(ContactData contact, GroupData group) {
+    ensurePreconditionsRemoveFromGroup(group, contact);
     appLocal.get().goTo().HomePage();
     appLocal.get().contact().selectContactGroupById(groupId);
     Contacts before = appLocal.get().db().groupContacts(groupId);

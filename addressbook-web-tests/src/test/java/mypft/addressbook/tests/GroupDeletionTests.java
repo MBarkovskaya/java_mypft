@@ -14,16 +14,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupDeletionTests extends TestBase {
 
-  @DataProvider
-  public Iterator<Object[]> validGroups() throws IOException {
-    return loader.validGroups();
-  }
-
-  @DataProvider
-  public Iterator<Object[]> validGroupsFromJson() throws IOException {
-    return loader.validGroupsFromJson();
-  }
-
   @BeforeMethod
   public void ensurePreconditions(Object[] args) {
     appLocal.get().goTo().GroupPage();
@@ -32,7 +22,7 @@ public class GroupDeletionTests extends TestBase {
     }
   }
 
-  @Test(dataProvider = "validGroups")
+  @Test(dataProvider = "dataIteratorGroups", dataProviderClass = TestDataLoader.class)
   public void testGroupDeletion(GroupData group) {
     Groups before = appLocal.get().db().groups();
     group.withId(before.stream().mapToInt(GroupData::getId).max().getAsInt());

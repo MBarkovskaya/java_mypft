@@ -201,8 +201,14 @@ public class ContactHelper extends BaseHelper {
     initContactDataById(contactId);
     String[] allData = wd.findElement(By.xpath("//*[@id='content']")).getText().split("\n");
     wd.navigate().back();
-    return Arrays.stream(allData)
-            .filter((s) -> !s.equals("")).map(ContactDetailsTests::phoneCleaned).collect(Collectors.joining(";"));
+    String[] allDataWithoutGroup = new String[allData.length - 1];
+    System.arraycopy(allData, 0, allDataWithoutGroup, 0, allDataWithoutGroup.length);
+    return Arrays.stream(allDataWithoutGroup)
+            .filter((s) -> !s.equals("")).map(ContactHelper::phoneCleaned).collect(Collectors.joining(";"));
+  }
+
+  private static String phoneCleaned(String phone) {
+    return phone.replaceAll("[\\s-()]", "");
   }
 
   public String addressInfoFromEditForm(int contactId) {

@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
 import mypft.addressbook.model.ContactData;
 import mypft.addressbook.model.GroupData;
+import org.testng.annotations.DataProvider;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,7 +17,18 @@ import java.util.stream.Collectors;
 
 public class TestDataLoader {
 
-  public Iterator<Object[]> validContacts() throws IOException {
+  @DataProvider(name = "dataArray")
+  public static Object[][] data() throws IOException {
+    return new Object[][] {{validContacts().next()[0], validGroups().next()[0]}};
+  }
+
+  @DataProvider(name = "datafromJsonArray")
+  public static Object[][] datafromJson() throws IOException {
+    return new Object[][] {{validContacts().next()[0], validGroups().next()[0]}};
+  }
+
+  @DataProvider(name = "dataIteratorContacts")
+  public static Iterator<Object[]> validContacts() throws IOException {
     try(BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")))) {
       String xml = "";
       String line = reader.readLine();
@@ -31,7 +43,8 @@ public class TestDataLoader {
     }
   }
 
-  public Iterator<Object[]> validContactsFromJson() throws IOException {
+  @DataProvider(name = "dataIteratorContactsfromJson")
+  public static Iterator<Object[]> validContactsFromJson() throws IOException {
     try(BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.json")))) {
       String json = "";
       String line = reader.readLine();
@@ -46,7 +59,8 @@ public class TestDataLoader {
     }
   }
 
-  public Iterator<Object[]> validGroups() throws IOException {
+  @DataProvider(name = "dataIteratorGroups")
+  public static Iterator<Object[]> validGroups() throws IOException {
     try(BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.xml")))) {
       String xml = "";
       String line = reader.readLine();
@@ -61,7 +75,8 @@ public class TestDataLoader {
     }
   }
 
-  public Iterator<Object[]> validGroupsFromJson() throws IOException {
+  @DataProvider(name = "dataIteratorGroupsfromJson")
+  public static Iterator<Object[]> validGroupsFromJson() throws IOException {
     try(BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.json")))) {
       String json = "";
       String line = reader.readLine();

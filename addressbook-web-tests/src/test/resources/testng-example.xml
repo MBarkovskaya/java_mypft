@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite1" verbose="1" parallel="classes" thread-count="2">
+    <test name="Example" >
+        <classes>
+            <class name="mypft.addressbook.tests.ContactsTests" />
+            <class name="mypft.addressbook.tests.GroupsTests" />
+        </classes>
+    </test>
+
+</suite>
