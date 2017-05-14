@@ -215,8 +215,6 @@ public class ContactsTests extends TestBase {
   @Test(dataProvider = "dataIteratorContactsfromJson", dataProviderClass = TestDataLoader.class)
   public void testContactPreview(ContactData contactData) {
     ContactData contact = ensureHaveContact(contactData);
-    Contacts contacts = getApp().db().contacts();
-    contact.withId(contacts.stream().mapToInt(ContactData::getId).max().getAsInt());
     ContactData editcontact = getApp().contact().edit(contact);
     File photo = new File("src/test/resources/k.png");
     editcontact.withPhoto(photo);
@@ -251,8 +249,6 @@ public class ContactsTests extends TestBase {
   @Test(dataProvider = "dataIteratorContactsfromJson", dataProviderClass = TestDataLoader.class)
   public void testContactEmail(ContactData contactData) {
     ContactData contact = ensureHaveContact(contactData);
-    Contacts contacts = getApp().db().contacts();
-    contact.withId(contacts.stream().mapToInt(ContactData::getId).max().getAsInt());
     ContactData contactInfoFromEditForm = getApp().contact().infoFromEditForm(contact);
     assertThat(mergeEmails(contact), equalTo(mergeEmails(contactInfoFromEditForm)));
     verifyContactListInUI();
@@ -271,8 +267,6 @@ public class ContactsTests extends TestBase {
   @Test(dataProvider = "dataIteratorContactsfromJson", dataProviderClass = TestDataLoader.class)
   public void testContactPhones(ContactData contactData) {
     ContactData contact = ensureHaveContact(contactData);
-    Contacts contacts = getApp().db().contacts();
-    contact.withId(contacts.stream().mapToInt(ContactData::getId).max().getAsInt());
     ContactData contactInfoFromEditForm = getApp().contact().infoFromEditForm(contact);
     assertThat(mergePhones(contact), equalTo(mergePhones(contactInfoFromEditForm)));
     verifyContactListInUI();

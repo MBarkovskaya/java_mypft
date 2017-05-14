@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f988fe81-4bf3-494e-97a0-fafeca10d989" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addressbook-web-tests/build.gradle" afterPath="$PROJECT_DIR$/addressbook-web-tests/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/appmanager/ApplicationManager.java" afterPath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/appmanager/ApplicationManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/model/GroupData.java" afterPath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/model/GroupData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/ContactsTests.java" afterPath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/ContactsTests.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/TestBase.java" afterPath="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/TestBase.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addressbook-web-tests/src/test/resources/testng-example.xml" afterPath="$PROJECT_DIR$/addressbook-web-tests/src/test/resources/testng-example.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/sandbox/.gradle/" />
@@ -155,9 +151,21 @@
       <file leaf-file-name="testng-example.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/addressbook-web-tests/src/test/resources/testng-example.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="69" lean-forward="false" selection-start-line="2" selection-start-column="69" selection-end-line="2" selection-end-column="69" />
+            <state relative-caret-position="51">
+              <caret line="3" column="43" lean-forward="true" selection-start-line="3" selection-start-column="43" selection-end-line="3" selection-end-column="43" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ContactsTests.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/ContactsTests.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="269" column="20" lean-forward="false" selection-start-line="269" selection-start-column="20" selection-end-line="269" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -2278,10 +2286,10 @@
         <option value="$PROJECT_DIR$/addressbook-web-tests/build.gradle" />
         <option value="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/MyTestListener.java" />
         <option value="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/TestBase.java" />
-        <option value="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/ContactsTests.java" />
         <option value="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/appmanager/ApplicationManager.java" />
         <option value="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/model/GroupData.java" />
         <option value="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/appmanager/ContactHelper.java" />
+        <option value="$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/ContactsTests.java" />
         <option value="$PROJECT_DIR$/addressbook-web-tests/src/test/resources/testng-example.xml" />
       </list>
     </option>
@@ -2629,25 +2637,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="TestNG.ContactsTests.testAddContactToGroup">
-    <configuration default="false" name="addressbook-web-tests [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/addressbook-web-tests" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="clean" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <method />
-    </configuration>
+  <component name="RunManager" selected="TestNG.ContactsTests.testContactEmail">
     <configuration default="false" name="addressbook-web-tests [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -2731,6 +2721,39 @@
       <option name="PACKAGE_NAME" value="mypft.addressbook.tests" />
       <option name="MAIN_CLASS_NAME" value="mypft.addressbook.tests.ContactsTests" />
       <option name="METHOD_NAME" value="testRemoveContactFromGroup" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/addressbook-web-tests" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="false" name="ContactsTests.testContactEmail" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="mypft.addressbook.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="addressbook-web-tests_test" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" value="mypft.addressbook.tests" />
+      <option name="MAIN_CLASS_NAME" value="mypft.addressbook.tests.ContactsTests" />
+      <option name="METHOD_NAME" value="testContactEmail" />
       <option name="GROUP_NAME" />
       <option name="TEST_OBJECT" value="METHOD" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -3175,19 +3198,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Gradle.addressbook-web-tests [clean]" />
-      <item index="1" class="java.lang.String" itemvalue="Gradle.addressbook-web-tests [build]" />
-      <item index="2" class="java.lang.String" itemvalue="Gradle.addressbook-web-tests [testExample]" />
-      <item index="3" class="java.lang.String" itemvalue="TestNG.ContactsTests.testAddContactToGroup" />
-      <item index="4" class="java.lang.String" itemvalue="TestNG.ContactsTests.testRemoveContactFromGroup" />
+      <item index="0" class="java.lang.String" itemvalue="Gradle.addressbook-web-tests [build]" />
+      <item index="1" class="java.lang.String" itemvalue="Gradle.addressbook-web-tests [testExample]" />
+      <item index="2" class="java.lang.String" itemvalue="TestNG.ContactsTests.testAddContactToGroup" />
+      <item index="3" class="java.lang.String" itemvalue="TestNG.ContactsTests.testRemoveContactFromGroup" />
+      <item index="4" class="java.lang.String" itemvalue="TestNG.ContactsTests.testContactEmail" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="TestNG.ContactsTests.testAddContactToGroup" />
-        <item index="1" class="java.lang.String" itemvalue="TestNG.ContactsTests.testRemoveContactFromGroup" />
-        <item index="2" class="java.lang.String" itemvalue="Gradle.addressbook-web-tests [testExample]" />
-        <item index="3" class="java.lang.String" itemvalue="Gradle.addressbook-web-tests [build]" />
-        <item index="4" class="java.lang.String" itemvalue="Gradle.addressbook-web-tests [clean]" />
+        <item index="0" class="java.lang.String" itemvalue="TestNG.ContactsTests.testContactEmail" />
+        <item index="1" class="java.lang.String" itemvalue="TestNG.ContactsTests.testAddContactToGroup" />
+        <item index="2" class="java.lang.String" itemvalue="TestNG.ContactsTests.testRemoveContactFromGroup" />
+        <item index="3" class="java.lang.String" itemvalue="Gradle.addressbook-web-tests [testExample]" />
+        <item index="4" class="java.lang.String" itemvalue="Gradle.addressbook-web-tests [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -3229,7 +3252,7 @@
       <workItem from="1494240426482" duration="8859000" />
       <workItem from="1494315043827" duration="22765000" />
       <workItem from="1494361287672" duration="89322000" />
-      <workItem from="1494749221364" duration="17540000" />
+      <workItem from="1494749221364" duration="18905000" />
     </task>
     <task id="LOCAL-00001" summary="Реализован сценарий смены пароля пользователю баг-трекера MantisBT администратором системы">
       <created>1494084957251</created>
@@ -3315,19 +3338,18 @@
     <history-entry file="ContactsTests_testAddContactToGroup - 2017.05.14 at 17h 59m 42s.xml">
       <configuration name="ContactsTests.testAddContactToGroup" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="ContactsTests_testRemoveContactFromGroup - 2017.05.14 at 17h 15m 55s.xml">
-      <configuration name="ContactsTests.testRemoveContactFromGroup" configurationId="TestNG" />
+    <history-entry file="ContactsTests_testContactEmail - 2017.05.14 at 18h 15m 16s.xml">
+      <configuration name="ContactsTests.testContactEmail" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="addressbook-web-tests_[testExample] - 2017.05.14 at 15h 37m 05s.xml">
-      <configuration name="addressbook-web-tests [testExample]" configurationId="GradleRunConfiguration" />
+    <history-entry file="ContactsTests_testContactEmail - 2017.05.14 at 18h 16m 19s.xml">
+      <configuration name="ContactsTests.testContactEmail" configurationId="TestNG" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="291318000" />
+    <option name="totallyTimeSpent" value="292683000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -3341,7 +3363,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24972437" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33191034" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33191034" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49474913" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -3351,7 +3373,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299748" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5442903" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20231533" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20231533" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32337245" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3037486" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -3455,7 +3477,7 @@
           <option name="timeStamp" value="96" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="102" />
+      <option name="time" value="104" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="TestNG">
@@ -3463,6 +3485,7 @@
         <watch expression="newIssues.toArray()[1]" language="JAVA" />
         <watch expression="newIssues.toArray()[1]" language="JAVA" />
         <watch expression="newIssues.toArray()[1]" language="JAVA" />
+        <watch expression="contact.id" />
       </configuration>
     </watches-manager>
   </component>
@@ -3478,14 +3501,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/MailHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mantis-tests/src/test/java/java_mypft/mantis/appmanager/DbHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -3863,16 +3878,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/ContactsTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="103" column="0" lean-forward="false" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/GroupsTests.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -3881,10 +3886,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/addressbook-web-tests/src/test/resources/contacts.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/mypft/addressbook/tests/ContactsTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="269" column="20" lean-forward="false" selection-start-line="269" selection-start-column="20" selection-end-line="269" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/addressbook-web-tests/src/test/resources/testng-example.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="69" lean-forward="false" selection-start-line="2" selection-start-column="69" selection-end-line="2" selection-end-column="69" />
+        <state relative-caret-position="51">
+          <caret line="3" column="43" lean-forward="true" selection-start-line="3" selection-start-column="43" selection-end-line="3" selection-end-column="43" />
           <folding />
         </state>
       </provider>
