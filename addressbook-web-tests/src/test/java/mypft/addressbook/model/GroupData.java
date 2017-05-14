@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -42,6 +43,7 @@ public class GroupData {
   //здесь связь уже описывать не нужно, это означает, что в парном классе GroupData нужно взять артибут groups
   // и оттуда взять описание того как реализована связь между этими объектами
   @ManyToMany(mappedBy = "groups")
+  @Where(clause = "deprecated = '0000-00-00'")
   private Set<ContactData> contacts;
 
   public int getId() {

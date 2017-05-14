@@ -1,0 +1,35 @@
+{
+  "uid" : "278db6c113d3a93f",
+  "name" : "testContactAddress[ContactData{id=2147483647, firstname='firstname 0', lastname='lastname 0'}]",
+  "title" : "Test contact address [ContactData{id=2147483647, firstname='firstname 0', lastname='lastname 0'}]",
+  "time" : {
+    "start" : 1494749597142,
+    "stop" : 1494749597478,
+    "duration" : 336
+  },
+  "summary" : {
+    "attachments" : 0,
+    "steps" : 0
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "suite" : {
+    "uid" : "ffb1ed959869e5ce",
+    "name" : "Default Suite",
+    "title" : "Default suite"
+  },
+  "steps" : [ ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Default Suite"
+  }, {
+    "name" : "suite-title",
+    "value" : null
+  } ],
+  "parameters" : [ ]
+}

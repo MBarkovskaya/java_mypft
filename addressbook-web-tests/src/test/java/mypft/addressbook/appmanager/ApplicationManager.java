@@ -1,6 +1,8 @@
 package mypft.addressbook.appmanager;
 
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -22,7 +24,7 @@ import static org.openqa.selenium.remote.BrowserType.*;
 public class ApplicationManager {
   private final Properties properties;
   Logger logger = LoggerFactory.getLogger(ApplicationManager.class);
-  WebDriver wd;
+  private WebDriver wd;
 
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
@@ -30,6 +32,7 @@ public class ApplicationManager {
   private GroupHelper groupHelper;
   private String browser;
   private DbHelper dbHelper;
+  private boolean initialized;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -38,6 +41,7 @@ public class ApplicationManager {
 
 
   public void init() throws IOException {
+    logger.info("Initializing appmanager");
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
     //инициализируем dbHelper до того, как мы установим соединение с браузером, потому что
@@ -78,12 +82,17 @@ public class ApplicationManager {
     navigationHelper = new NavigationHelper(wd);
     sessionHelper = new SessionHelper(wd);
     sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
+    initialized = true;
   }
 
   public void stop() {
     if (wd != null) {
       wd.quit();
     }
+  }
+
+  public boolean isInitialized() {
+    return initialized;
   }
 
   public GroupHelper group() {
@@ -100,5 +109,15 @@ public class ApplicationManager {
 
   public DbHelper db() {
     return dbHelper;
+  }
+
+  public WebDriver getWd() {
+    return wd;
+  }
+
+  public byte[] TakesScreenshot () {
+    //снимать скриншот будем с помощью вебдрайвера, который нужно преобразовать (привести к типу TakesScreenshot, хоть и все драйверы его реализуют
+    //но нужно указать это явно
+    return ((TakesScreenshot) wd).getScreenshotAs(OutputType.BYTES);
   }
 }

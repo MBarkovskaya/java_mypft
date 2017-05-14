@@ -8,6 +8,7 @@ import mypft.addressbook.model.Groups;
 import org.openqa.selenium.remote.BrowserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -23,6 +24,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestBase {
 
+  protected boolean initialized = false;
   public TestDataLoader loader = new TestDataLoader();
 
   protected static final ThreadLocal<ApplicationManager> appLocal = ThreadLocal.withInitial(() -> new ApplicationManager(System.getProperty("browser", BrowserType.CHROME)));
@@ -33,10 +35,15 @@ public class TestBase {
   @BeforeSuite
   public void setUp() throws Exception {
     appLocal.get().init();
+    logger.info("Setup invoked");
+    initialized = true;
+    Assert.assertNotNull(appLocal.get());
+    Assert.assertNotNull(appLocal.get().getWd(), "Selenium driver wasn't initialized");
   }
 
   @AfterSuite(alwaysRun = true)
   public void tearDown() {
+    logger.info("Teardown suite");
     appLocal.get().stop();
   }
 

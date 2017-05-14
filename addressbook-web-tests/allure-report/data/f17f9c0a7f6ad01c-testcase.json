@@ -1,0 +1,35 @@
+{
+  "uid" : "f17f9c0a7f6ad01c",
+  "name" : "testRemoveContactFromGroup[ContactData{id=0, firstname='firstname 0', lastname='lastname 0'},GroupData{id='0', name='test 0'}]",
+  "title" : "Test remove contact from group [ContactData{id=0, firstname='firstname 0', lastname='lastname 0'},GroupData{id='0', name='test 0'}]",
+  "time" : {
+    "start" : 1494749613806,
+    "stop" : 1494749614928,
+    "duration" : 1122
+  },
+  "summary" : {
+    "attachments" : 0,
+    "steps" : 0
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "suite" : {
+    "uid" : "ffb1ed959869e5ce",
+    "name" : "Default Suite",
+    "title" : "Default suite"
+  },
+  "steps" : [ ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Default Suite"
+  }, {
+    "name" : "suite-title",
+    "value" : null
+  } ],
+  "parameters" : [ ]
+}

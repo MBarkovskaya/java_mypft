@@ -1,14 +1,17 @@
 package mypft.addressbook.tests;
 
+import mypft.addressbook.appmanager.ApplicationManager;
 import mypft.addressbook.generators.ContactDataGenerator;
 import mypft.addressbook.model.ContactData;
 import mypft.addressbook.model.Contacts;
 import mypft.addressbook.model.GroupData;
 import mypft.addressbook.model.Groups;
 import org.apache.commons.lang3.StringUtils;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -24,43 +27,47 @@ public class ContactsTests extends TestBase {
   private int groupId;
 
   private void ensurePreconditionsCreation(ContactData contact, GroupData group) {
-    Groups groups = appLocal.get().db().groups();
+    Groups groups = getApp().db().groups();
     if (groups.size() == 0) {
-      appLocal.get().group().create(group);
+      getApp().group().create(group);
     }
   }
 
   @Test(dataProvider = "dataArray", dataProviderClass = TestDataLoader.class)
   public void testContactCreation(ContactData contact, GroupData group) {
+    Assert.assertTrue(initialized);
     ensurePreconditionsCreation(contact, group);
-    Groups groups = appLocal.get().db().groups();
-    Contacts before = appLocal.get().db().contacts();
+    Groups groups = getApp().db().groups();
+    Contacts before = getApp().db().contacts();
     File photo = new File("src/test/resources/k.png");
     contact.withPhoto(photo).inGroup(groups.iterator().next());
-    appLocal.get().goTo().HomePage();
-    appLocal.get().contact().create(contact, true);
-    assertThat(appLocal.get().contact().count(), equalTo(before.size() + 1));
-    Contacts after = appLocal.get().db().contacts();
+    getApp().goTo().HomePage();
+    getApp().contact().create(contact, true);
+    assertThat(getApp().contact().count(), equalTo(before.size() + 1));
+    Contacts after = getApp().db().contacts();
     assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt(ContactData::getId).max().getAsInt()))));
     verifyContactListInUI();
   }
 
 
   private void ensurePreconditionsAddToGroup(ContactData contact, GroupData group) {
-    appLocal.get().goTo().HomePage();
-    appLocal.get().contact().selectContactAll();
-    Contacts contacts = appLocal.get().db().contacts();
+    Assert.assertNotNull(appLocal);
+    Assert.assertNotNull(getApp());
+    Assert.assertNotNull(getApp().getWd());
+    getApp().goTo().HomePage();
+    getApp().contact().selectContactAll();
+    Contacts contacts = getApp().db().contacts();
     if (contacts.size() == 0) {
       File photo = new File("src/test/resources/k.png");
-      appLocal.get().contact().create((contact.withPhoto(photo)), true);
-      contactData = appLocal.get().db().contacts().iterator().next();
+      getApp().contact().create((contact.withPhoto(photo)), true);
+      contactData = getApp().db().contacts().iterator().next();
       contactId = contactData.getId();
     } else {
       contactId = contacts.iterator().next().getId();
-      contactData = appLocal.get().db().contactById(contactId);
+      contactData = getApp().db().contactById(contactId);
     }
-    appLocal.get().goTo().GroupPage();
-    Groups groups = appLocal.get().db().groups();
+    getApp().goTo().GroupPage();
+    Groups groups = getApp().db().groups();
     if (groups.size() > 0) {
       for (GroupData item : groups) {
         if (!contactData.getGroups().contains(item)) {
@@ -71,10 +78,10 @@ public class ContactsTests extends TestBase {
       }
     }
     if (groupData == null) {
-      appLocal.get().goTo().GroupPage();
+      getApp().goTo().GroupPage();
       groupData = group;
-      appLocal.get().group().create(groupData);
-      groupId = appLocal.get().db().groups().stream().mapToInt(GroupData::getId).max().getAsInt();
+      getApp().group().create(groupData);
+      groupId = getApp().db().groups().stream().mapToInt(GroupData::getId).max().getAsInt();
       groupData.withId(groupId);
     }
   }
@@ -82,37 +89,37 @@ public class ContactsTests extends TestBase {
   @Test(dataProvider = "dataArray", dataProviderClass = TestDataLoader.class)
   public void testAddContactToGroup(ContactData contact, GroupData group) {
     ensurePreconditionsAddToGroup(contact, group);
-    appLocal.get().goTo().HomePage();
-    appLocal.get().contact().selectContactGroupById(groupId);
-    Contacts before = appLocal.get().db().groupContacts(groupId);
-    appLocal.get().goTo().HomePage();
-    appLocal.get().contact().selectContactAll();
-    appLocal.get().contact().selectContactById(contactId);
-    appLocal.get().contact().addToGroup(groupId, contactId);
-    assertThat(appLocal.get().contact().count(), equalTo(before.size() + 1));
-    Contacts after = appLocal.get().db().groupContacts(groupId);
+    getApp().goTo().HomePage();
+    getApp().contact().selectContactGroupById(groupId);
+    Contacts before = getApp().db().groupContacts(groupId);
+    getApp().goTo().HomePage();
+    getApp().contact().selectContactAll();
+    getApp().contact().selectContactById(contactId);
+    getApp().contact().addToGroup(groupId, contactId);
+    assertThat(getApp().contact().count(), equalTo(before.size() + 1));
+    Contacts after = getApp().db().groupContacts(groupId);
     assertThat("Group doesn't contains required contact", after.contains(contactData));
-    appLocal.get().goTo().HomePage();
-    appLocal.get().contact().selectContactAll();
+    getApp().goTo().HomePage();
+    getApp().contact().selectContactAll();
     verifyContactListInUI();
   }
 
 
   private void ensurePreconditionsRemoveFromGroup(GroupData group, ContactData contact) {
-    appLocal.get().goTo().GroupPage();
-    Groups groups = appLocal.get().db().groups();
+    getApp().goTo().GroupPage();
+    Groups groups = getApp().db().groups();
     if (groups.size() == 0) {
-      appLocal.get().group().create(group);
-      groupData = appLocal.get().db().groups().iterator().next();
+      getApp().group().create(group);
+      groupData = getApp().db().groups().iterator().next();
       groupId = groupData.getId();
     } else {
       groupId = groups.iterator().next().getId();
-      groupData = appLocal.get().db().groupById(groupId);
+      groupData = getApp().db().groupById(groupId);
     }
-    appLocal.get().goTo().HomePage();
-    Contacts contacts = appLocal.get().db().contacts();
-    appLocal.get().contact().selectContactGroupById(groupId);
-    Contacts groupContacts = appLocal.get().db().groupContacts(groupId);
+    getApp().goTo().HomePage();
+    Contacts contacts = getApp().db().contacts();
+    getApp().contact().selectContactGroupById(groupId);
+    Contacts groupContacts = getApp().db().groupContacts(groupId);
     if (contacts.size() > 0) {
       for (ContactData item : contacts) {
         if (groupContacts.contains(item)) {
@@ -123,11 +130,11 @@ public class ContactsTests extends TestBase {
       }
     }
     if (contactData == null) {
-      appLocal.get().goTo().HomePage();
+      getApp().goTo().HomePage();
       contactData = contact;
       File photo = new File("src/test/resources/k.png");
-      appLocal.get().contact().create(contactData.withPhoto(photo).inGroup(groupData).withId(groupId), true);
-      contactId = appLocal.get().db().contacts().stream().mapToInt(ContactData::getId).max().getAsInt();
+      getApp().contact().create(contactData.withPhoto(photo).inGroup(groupData).withId(groupId), true);
+      contactId = getApp().db().contacts().stream().mapToInt(ContactData::getId).max().getAsInt();
       contactData.withId(contactId);
     }
 
@@ -137,38 +144,38 @@ public class ContactsTests extends TestBase {
   @Test(dataProvider = "dataArray", dataProviderClass = TestDataLoader.class)
   public void testRemoveContactFromGroup(ContactData contact, GroupData group) {
     ensurePreconditionsRemoveFromGroup(group, contact);
-    appLocal.get().goTo().HomePage();
-    appLocal.get().contact().selectContactGroupById(groupId);
-    Contacts before = appLocal.get().db().groupContacts(groupId);
-    appLocal.get().contact().removeFromGroup(contactId, groupId);
-    Contacts after = appLocal.get().db().groupContacts(groupId);
+    getApp().goTo().HomePage();
+    getApp().contact().selectContactGroupById(groupId);
+    Contacts before = getApp().db().groupContacts(groupId);
+    getApp().contact().removeFromGroup(contactId, groupId);
+    Contacts after = getApp().db().groupContacts(groupId);
     assertEquals(after.size(), before.size() - 1);
-    appLocal.get().goTo().HomePage();
-    appLocal.get().contact().selectContactAll();
+    getApp().goTo().HomePage();
+    getApp().contact().selectContactAll();
     verifyContactListInUI();
   }
 
   @Test(dataProvider = "dataIteratorContacts", dataProviderClass = TestDataLoader.class)
   public void testContactDeletion(ContactData contact) throws InterruptedException {
     ensureHaveContact(contact);
-    Contacts before = appLocal.get().db().contacts();
+    Contacts before = getApp().db().contacts();
     contact.withId(before.stream().mapToInt(ContactData::getId).max().getAsInt());
     ContactData deletedContact = before.iterator().next();
-    appLocal.get().contact().delete(deletedContact);
-    assertThat(appLocal.get().contact().count(), equalTo(before.size() - 1));
-    Contacts after = appLocal.get().db().contacts();
+    getApp().contact().delete(deletedContact);
+    assertThat(getApp().contact().count(), equalTo(before.size() - 1));
+    Contacts after = getApp().db().contacts();
     assertThat(after, equalTo(before.without(deletedContact)));
     verifyContactListInUI();
   }
 
   private ContactData ensureHaveContact(ContactData contact) {
-    appLocal.get().goTo().HomePage();
+    getApp().goTo().HomePage();
     ContactData result;
-    Contacts contacts = appLocal.get().db().contacts();
+    Contacts contacts = getApp().db().contacts();
     if (contacts.size() == 0) {
       File photo = new File("src/test/resources/k.png");
-      appLocal.get().contact().create((contact.withPhoto(photo)), true);
-      result = appLocal.get().db().contacts().iterator().next();
+      getApp().contact().create((contact.withPhoto(photo)), true);
+      result = getApp().db().contacts().iterator().next();
     } else {
       result = contacts.iterator().next();
     }
@@ -179,7 +186,7 @@ public class ContactsTests extends TestBase {
   public void testContactAddress(ContactData contactData) {
     ContactData contact = ensureHaveContact(contactData);
 
-    String contactInfoFromEditForm = appLocal.get().contact().addressInfoFromEditForm(contact.getId());
+    String contactInfoFromEditForm = getApp().contact().addressInfoFromEditForm(contact.getId());
     assertThat(multiLineAddressStringToString(contact.getAddress() + contact.getAddress2()),
             equalTo(multiLineAddressStringToString(contactInfoFromEditForm)));
     verifyContactListInUI();
@@ -193,14 +200,14 @@ public class ContactsTests extends TestBase {
   @Test(dataProvider = "dataIteratorContacts", dataProviderClass = TestDataLoader.class)
   public void testContactModification(ContactData contactData) {
     ensureHaveContact(contactData);
-    Contacts before = appLocal.get().db().contacts();
+    Contacts before = getApp().db().contacts();
     ContactData originalContact = before.iterator().next();
     File photo = new File("src/test/resources/k.png");
     ContactData modifiedContact = ContactDataGenerator.generateRandomContact().withPhoto(photo);
     modifiedContact.withId(originalContact.getId());
-    appLocal.get().contact().modify(modifiedContact);
-    assertThat(appLocal.get().contact().count(), equalTo(before.size()));
-    Contacts after = appLocal.get().db().contacts();
+    getApp().contact().modify(modifiedContact);
+    assertThat(getApp().contact().count(), equalTo(before.size()));
+    Contacts after = getApp().db().contacts();
     assertThat(after, equalTo(before.without(originalContact).withAdded(modifiedContact)));
     verifyContactListInUI();
   }
@@ -208,12 +215,12 @@ public class ContactsTests extends TestBase {
   @Test(dataProvider = "dataIteratorContactsfromJson", dataProviderClass = TestDataLoader.class)
   public void testContactPreview(ContactData contactData) {
     ContactData contact = ensureHaveContact(contactData);
-    Contacts contacts = appLocal.get().db().contacts();
+    Contacts contacts = getApp().db().contacts();
     contact.withId(contacts.stream().mapToInt(ContactData::getId).max().getAsInt());
-    ContactData editcontact = appLocal.get().contact().edit(contact);
+    ContactData editcontact = getApp().contact().edit(contact);
     File photo = new File("src/test/resources/k.png");
     editcontact.withPhoto(photo);
-    String contactinfoFromDetailsForm = appLocal.get().contact().infoFromDetailsForm(contact.getId());
+    String contactinfoFromDetailsForm = getApp().contact().infoFromDetailsForm(contact.getId());
     assertThat(mergeContact(editcontact), equalTo(contactinfoFromDetailsForm));
     verifyContactListInUI();
   }
@@ -244,9 +251,9 @@ public class ContactsTests extends TestBase {
   @Test(dataProvider = "dataIteratorContactsfromJson", dataProviderClass = TestDataLoader.class)
   public void testContactEmail(ContactData contactData) {
     ContactData contact = ensureHaveContact(contactData);
-    Contacts contacts = appLocal.get().db().contacts();
+    Contacts contacts = getApp().db().contacts();
     contact.withId(contacts.stream().mapToInt(ContactData::getId).max().getAsInt());
-    ContactData contactInfoFromEditForm = appLocal.get().contact().infoFromEditForm(contact);
+    ContactData contactInfoFromEditForm = getApp().contact().infoFromEditForm(contact);
     assertThat(mergeEmails(contact), equalTo(mergeEmails(contactInfoFromEditForm)));
     verifyContactListInUI();
   }
@@ -264,9 +271,9 @@ public class ContactsTests extends TestBase {
   @Test(dataProvider = "dataIteratorContactsfromJson", dataProviderClass = TestDataLoader.class)
   public void testContactPhones(ContactData contactData) {
     ContactData contact = ensureHaveContact(contactData);
-    Contacts contacts = appLocal.get().db().contacts();
+    Contacts contacts = getApp().db().contacts();
     contact.withId(contacts.stream().mapToInt(ContactData::getId).max().getAsInt());
-    ContactData contactInfoFromEditForm = appLocal.get().contact().infoFromEditForm(contact);
+    ContactData contactInfoFromEditForm = getApp().contact().infoFromEditForm(contact);
     assertThat(mergePhones(contact), equalTo(mergePhones(contactInfoFromEditForm)));
     verifyContactListInUI();
   }
@@ -274,6 +281,17 @@ public class ContactsTests extends TestBase {
   private String mergePhones(ContactData contact) {
     return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone(), contact.getHomePhone2()).stream()
             .filter((s) -> !s.equals("")).map(ContactsTests::cleanedPhone).collect(Collectors.joining("\n"));
+  }
+
+  private ApplicationManager getApp() {
+    if (!appLocal.get().isInitialized()) {
+      try {
+        appLocal.get().init();
+      } catch (IOException e) {
+        Assert.fail("Unable to initialize ApplicationManager", e);
+      }
+    }
+    return appLocal.get();
   }
 
   private static String cleanedPhone(String phone) {
