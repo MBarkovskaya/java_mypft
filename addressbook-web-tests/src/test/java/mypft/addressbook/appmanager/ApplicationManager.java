@@ -1,6 +1,5 @@
 package mypft.addressbook.appmanager;
 
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,6 +7,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileReader;
@@ -20,6 +21,7 @@ import static org.openqa.selenium.remote.BrowserType.*;
 
 public class ApplicationManager {
   private final Properties properties;
+  Logger logger = LoggerFactory.getLogger(ApplicationManager.class);
   WebDriver wd;
 
   private SessionHelper sessionHelper;
@@ -44,6 +46,8 @@ public class ApplicationManager {
     dbHelper = new DbHelper();
 
     //если свойство properties.getProperty selenium.server равно пустой строке, то инициализацию нужно оставить такой же как раньше
+    logger.info("selenium.server = " + properties.getProperty("selenium.server"));
+    logger.info("browser = " + browser);
     if ("".equals(properties.getProperty("selenium.server"))) {
       if (browser.equals(FIREFOX)) {
         wd = new FirefoxDriver();
@@ -77,7 +81,9 @@ public class ApplicationManager {
   }
 
   public void stop() {
-    wd.quit();
+    if (wd != null) {
+      wd.quit();
+    }
   }
 
   public GroupHelper group() {
