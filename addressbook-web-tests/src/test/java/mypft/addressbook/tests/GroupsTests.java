@@ -12,65 +12,65 @@ public class GroupsTests extends TestBase {
 
   @Test(dataProvider = "dataIteratorGroups", dataProviderClass = TestDataLoader.class)
   public void testGroupCreation(GroupData group) {
-    appLocal.get().goTo().GroupPage();
-    Groups before = appLocal.get().db().groups();
-    appLocal.get().group().create(group);
-    assertThat(appLocal.get().group().count(), equalTo(before.size() + 1));
-    Groups after = appLocal.get().db().groups();
+    getApp().goTo().GroupPage();
+    Groups before = getApp().db().groups();
+    getApp().group().create(group);
+    assertThat(getApp().group().count(), equalTo(before.size() + 1));
+    Groups after = getApp().db().groups();
     assertThat(after, equalTo(before.withAdded(group.withId(after.stream().mapToInt(GroupData::getId).max().getAsInt()))));
   }
 
   @Test
   public void testBadGroupCreation() {
-    appLocal.get().goTo().GroupPage();
-    Groups before = appLocal.get().db().groups();
+    getApp().goTo().GroupPage();
+    Groups before = getApp().db().groups();
     GroupData group = new GroupData().withName("test2'");
-    appLocal.get().group().create(group);
-    assertThat(appLocal.get().group().count(), equalTo(before.size()));
-    Groups after = appLocal.get().db().groups();
+    getApp().group().create(group);
+    assertThat(getApp().group().count(), equalTo(before.size()));
+    Groups after = getApp().db().groups();
     assertThat(after, equalTo(before));
     verifyGroupListInUI();
   }
 
   private void ensurePreconditionsModification(GroupData group) {
-    if (appLocal.get().db().groups().size() == 0) {
-      appLocal.get().goTo().GroupPage();
-      appLocal.get().group().create(group);
+    if (getApp().db().groups().size() == 0) {
+      getApp().goTo().GroupPage();
+      getApp().group().create(group);
     }
   }
 
   @Test(dataProvider = "dataIteratorGroupsfromJson", dataProviderClass = TestDataLoader.class)
   public void testGroupModification(GroupData group) {
     ensurePreconditionsModification(group);
-    Groups before = appLocal.get().db().groups();
+    Groups before = getApp().db().groups();
     GroupData originalGroup = before.iterator().next();
     GroupData modifiedGroup = GroupDataGenerator.generateRandomGroup();
     modifiedGroup.withId(originalGroup.getId());
-    appLocal.get().goTo().GroupPage();
-    appLocal.get().group().modify(modifiedGroup);
-    assertThat(appLocal.get().group().count(), equalTo(before.size()));
-    Groups after = appLocal.get().db().groups();
+    getApp().goTo().GroupPage();
+    getApp().group().modify(modifiedGroup);
+    assertThat(getApp().group().count(), equalTo(before.size()));
+    Groups after = getApp().db().groups();
     assertThat(after, equalTo(before.without(originalGroup).withAdded(modifiedGroup)));
 
     verifyGroupListInUI();
   }
 
   public void ensurePreconditionsDeletion(GroupData group) {
-    appLocal.get().goTo().GroupPage();
-    if (appLocal.get().db().groups().size() == 0) {
-      appLocal.get().group().create(group);
+    getApp().goTo().GroupPage();
+    if (getApp().db().groups().size() == 0) {
+      getApp().group().create(group);
     }
   }
 
   @Test(dataProvider = "dataIteratorGroups", dataProviderClass = TestDataLoader.class)
   public void testGroupDeletion(GroupData group) {
     ensurePreconditionsDeletion(group);
-    Groups before = appLocal.get().db().groups();
+    Groups before = getApp().db().groups();
     group.withId(before.stream().mapToInt(GroupData::getId).max().getAsInt());
     GroupData deletedGroup = before.iterator().next();
-    appLocal.get().group().delete(deletedGroup);
-    assertThat(appLocal.get().group().count(), equalTo(before.size() - 1));
-    Groups after = appLocal.get().db().groups();
+    getApp().group().delete(deletedGroup);
+    assertThat(getApp().group().count(), equalTo(before.size() - 1));
+    Groups after = getApp().db().groups();
     assertThat(after, equalTo(before.without(deletedGroup)));
     verifyGroupListInUI();
   }

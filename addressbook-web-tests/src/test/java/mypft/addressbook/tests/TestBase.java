@@ -9,11 +9,9 @@ import org.openqa.selenium.remote.BrowserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Set;
@@ -27,21 +25,20 @@ public class TestBase {
   protected boolean initialized = false;
   public TestDataLoader loader = new TestDataLoader();
 
-  protected static final ThreadLocal<ApplicationManager> appLocal = ThreadLocal.withInitial(() -> new ApplicationManager(System.getProperty("browser", BrowserType.CHROME)));
+  protected static final ThreadLocal<ApplicationManager> appLocal = ThreadLocal.withInitial(() -> new ApplicationManager(System.getProperty("browser", BrowserType.FIREFOX)));
 
   Logger logger = LoggerFactory.getLogger(TestBase.class);
 
 
-  @BeforeSuite
+  @BeforeClass
   public void setUp() throws Exception {
     appLocal.get().init();
-    logger.info("Setup invoked");
     initialized = true;
     Assert.assertNotNull(appLocal.get());
     Assert.assertNotNull(appLocal.get().getWd(), "Selenium driver wasn't initialized");
   }
 
-  @AfterSuite(alwaysRun = true)
+  @AfterClass(alwaysRun = true)
   public void tearDown() {
     logger.info("Teardown suite");
     appLocal.get().stop();
@@ -91,5 +88,16 @@ public class TestBase {
             .map((c) -> new ContactData().withId(c.getId()).withFirstname(c.getFirstname())
                     .withLastname(c.getLastname()).withAddress(c.getAddress()))
             .collect(Collectors.toSet());
+  }
+
+  protected ApplicationManager getApp() {
+    if (!appLocal.get().isInitialized()) {
+      try {
+        appLocal.get().init();
+      } catch (IOException e) {
+        Assert.fail("Unable to initialize ApplicationManager", e);
+      }
+    }
+    return appLocal.get();
   }
 }

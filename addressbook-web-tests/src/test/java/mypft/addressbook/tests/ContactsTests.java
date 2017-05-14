@@ -277,17 +277,6 @@ public class ContactsTests extends TestBase {
             .filter((s) -> !s.equals("")).map(ContactsTests::cleanedPhone).collect(Collectors.joining("\n"));
   }
 
-  private ApplicationManager getApp() {
-    if (!appLocal.get().isInitialized()) {
-      try {
-        appLocal.get().init();
-      } catch (IOException e) {
-        Assert.fail("Unable to initialize ApplicationManager", e);
-      }
-    }
-    return appLocal.get();
-  }
-
   private static String cleanedPhone(String phone) {
     return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
   }

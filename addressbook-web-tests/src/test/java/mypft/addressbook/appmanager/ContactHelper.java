@@ -201,8 +201,14 @@ public class ContactHelper extends BaseHelper {
     initContactDataById(contactId);
     String[] allData = wd.findElement(By.xpath("//*[@id='content']")).getText().split("\n");
     wd.navigate().back();
-    String[] allDataWithoutGroup = new String[allData.length - 1];
-    System.arraycopy(allData, 0, allDataWithoutGroup, 0, allDataWithoutGroup.length);
+    String[] allDataWithoutGroup;
+    if (allData.length > 20) {
+      // надо отрезать информацию о группах
+      allDataWithoutGroup = new String[allData.length - 1];
+      System.arraycopy(allData, 0, allDataWithoutGroup, 0, allDataWithoutGroup.length);
+    } else {
+      allDataWithoutGroup = allData;
+    }
     return Arrays.stream(allDataWithoutGroup)
             .filter((s) -> !s.equals("")).map(ContactHelper::phoneCleaned).collect(Collectors.joining(";"));
   }
