@@ -3,51 +3,45 @@
   "plugins" : {
     "total" : {
       "statistic" : {
-        "total" : 39,
-        "passed" : 13,
+        "total" : 2,
+        "passed" : 0,
         "pending" : 0,
         "canceled" : 0,
         "failed" : 0,
-        "broken" : 26
+        "broken" : 2
       },
       "time" : {
-        "start" : 1494685353303,
-        "stop" : 1494750610725,
-        "duration" : 65257422
+        "start" : 1495028525384,
+        "stop" : 1495029558269,
+        "duration" : 1032885
       }
     },
     "defects" : {
-      "totalCount" : 1,
+      "totalCount" : 2,
       "items" : [ {
-        "count" : 26,
-        "uid" : "8bea155199a856c0",
-        "message" : "NullPointerException: null",
+        "count" : 1,
+        "uid" : "d07731622128a12e",
+        "message" : "NoSuchElementException: Unable to locate element: {\"method\":\"css selector\",\"selector\":\"input[value='86']\"}\nCommand duration or timeout: 5.06 seconds\nFor documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html\nBuild info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'\nSystem info: host: 'work_laptop', ip: '192.168.2.163', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_121'\nDriver info: org.openqa.selenium.firefox.FirefoxDriver\nCapabilities [{applicationCacheEnabled=true, rotatable=false, handlesAlerts=true, databaseEnabled=true, version=47.0.1, platform=WINDOWS, nativeEvents=false, acceptSslCerts=true, webStorageEnabled=true, locationContextEnabled=true, browserName=firefox, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]\nSession ID: 20ad516f-dbc5-4ae4-ae40-258baf9e551e\n*** Element info: {Using=css selector, value=input[value='86']}",
+        "status" : "BROKEN"
+      }, {
+        "count" : 1,
+        "uid" : "b23a36396f8275ef",
+        "message" : "NoSuchElementException: Unable to locate element: {\"method\":\"css selector\",\"selector\":\"input[value='86']\"}\nCommand duration or timeout: 5.12 seconds\nFor documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html\nBuild info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'\nSystem info: host: 'work_laptop', ip: '192.168.2.163', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_121'\nDriver info: org.openqa.selenium.firefox.FirefoxDriver\nCapabilities [{applicationCacheEnabled=true, rotatable=false, handlesAlerts=true, databaseEnabled=true, version=47.0.1, platform=WINDOWS, nativeEvents=false, acceptSslCerts=true, webStorageEnabled=true, locationContextEnabled=true, browserName=firefox, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]\nSession ID: a55c64f2-aadf-46bc-9569-0bcf73f7b01a\n*** Element info: {Using=css selector, value=input[value='86']}",
         "status" : "BROKEN"
       } ]
     },
     "xunit" : {
-      "totalCount" : 2,
+      "totalCount" : 1,
       "items" : [ {
-        "uid" : "ffb1ed959869e5ce",
-        "title" : "Default suite",
-        "statistic" : {
-          "total" : 13,
-          "passed" : 13,
-          "pending" : 0,
-          "canceled" : 0,
-          "failed" : 0,
-          "broken" : 0
-        }
-      }, {
-        "uid" : "b300da9c0442dda",
+        "uid" : "3ab3d7b1a10f9d63",
         "title" : "Suite 1",
         "statistic" : {
-          "total" : 26,
+          "total" : 2,
           "passed" : 0,
           "pending" : 0,
           "canceled" : 0,
           "failed" : 0,
-          "broken" : 26
+          "broken" : 2
         }
       } ]
     },
@@ -56,12 +50,12 @@
       "items" : [ {
         "title" : "Without feature",
         "statistic" : {
-          "total" : 39,
-          "passed" : 13,
+          "total" : 2,
+          "passed" : 0,
           "pending" : 0,
           "canceled" : 0,
           "failed" : 0,
-          "broken" : 26
+          "broken" : 2
         }
       } ]
     },

@@ -115,7 +115,7 @@ public class ApplicationManager {
     return wd;
   }
 
-  public byte[] TakesScreenshot () {
+  public byte[] takeScreenshot() {
     //снимать скриншот будем с помощью вебдрайвера, который нужно преобразовать (привести к типу TakesScreenshot, хоть и все драйверы его реализуют
     //но нужно указать это явно
     return ((TakesScreenshot) wd).getScreenshotAs(OutputType.BYTES);

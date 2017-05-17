@@ -9,6 +9,7 @@ import org.openqa.selenium.remote.BrowserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
+import org.testng.ITestContext;
 import org.testng.annotations.*;
 
 import java.io.IOException;
@@ -20,6 +21,8 @@ import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+@Listeners(MyTestListener.class)
+
 public class TestBase {
 
   protected boolean initialized = false;
@@ -27,21 +30,28 @@ public class TestBase {
 
   protected static final ThreadLocal<ApplicationManager> appLocal = ThreadLocal.withInitial(() -> new ApplicationManager(System.getProperty("browser", BrowserType.FIREFOX)));
 
+  protected static final ApplicationManager app = appLocal.get();
+
   Logger logger = LoggerFactory.getLogger(TestBase.class);
 
 
   @BeforeClass
-  public void setUp() throws Exception {
-    appLocal.get().init();
+  //в любой метод testng (BeforeMethod, AfterMethod, BeforeSuit...) можно передать ITestContext и тестовый фреймворк автоматически туда
+  //передаст соответствующий контекст, который ссылается на контекст выполнения тестов)
+  public void setUp(ITestContext context) throws Exception {
+    app.init();
     initialized = true;
-    Assert.assertNotNull(appLocal.get());
-    Assert.assertNotNull(appLocal.get().getWd(), "Selenium driver wasn't initialized");
+    Assert.assertNotNull(app);
+    Assert.assertNotNull(app.getWd(), "Selenium driver wasn't initialized");
+    //в контекст нужно поместить ссылку на appmanager (сразу после инициализации) - для прикрепления скриншота к отчету allure
+    //помещаем ссылку на appmanager в контекст, чтобы MyTestListener смог ее оттуда извлечь и через него снимет скриншот
+    context.setAttribute("app", app);
   }
 
   @AfterClass(alwaysRun = true)
   public void tearDown() {
     logger.info("Teardown suite");
-    appLocal.get().stop();
+    app.stop();
   }
 
   @BeforeMethod
@@ -63,8 +73,8 @@ public class TestBase {
     // или можно по сокращенному 2) варианту - функция getBoolean() получает системное свойство с заданным именем
     //и автоматически преобразуут его в булевскую величину
     if (Boolean.getBoolean("verifyUI")) {
-      Groups dbGroups = appLocal.get().db().groups();
-      Groups uiGroups = appLocal.get().group().all();
+      Groups dbGroups = app.db().groups();
+      Groups uiGroups = app.group().all();
       //упрощаем объекты, которые загружаем из бд, чтобы они совпадали с объектами, загруженными из UI
       // анонимная функция map, которая на вход принимает группу, а на выходе новый объект с идентификатором таким же как у преобразуемого объекта, с именем
       //таким же как у преобразуемого объекта
@@ -77,8 +87,8 @@ public class TestBase {
 
   public void verifyContactListInUI() {
     if (Boolean.getBoolean("verifyUI")) {
-      Contacts dbContacts = appLocal.get().db().contacts();
-      Contacts uiContacts = appLocal.get().contact().all();
+      Contacts dbContacts = app.db().contacts();
+      Contacts uiContacts = app.contact().all();
       assertThat(flatSet(uiContacts), equalTo(flatSet(dbContacts)));
     }
   }
@@ -91,13 +101,13 @@ public class TestBase {
   }
 
   protected ApplicationManager getApp() {
-    if (!appLocal.get().isInitialized()) {
+    if (!app.isInitialized()) {
       try {
-        appLocal.get().init();
+        app.init();
       } catch (IOException e) {
         Assert.fail("Unable to initialize ApplicationManager", e);
       }
     }
-    return appLocal.get();
+    return app;
   }
 }
