@@ -28,7 +28,7 @@ public class TestBase {
   protected boolean initialized = false;
   public TestDataLoader loader = new TestDataLoader();
 
-  protected static final ThreadLocal<ApplicationManager> appLocal = ThreadLocal.withInitial(() -> new ApplicationManager(System.getProperty("browser", BrowserType.FIREFOX)));
+  protected static final ThreadLocal<ApplicationManager> appLocal = ThreadLocal.withInitial(() -> new ApplicationManager(System.getProperty("browser", BrowserType.CHROME)));
 
   protected static final ApplicationManager app = appLocal.get();
 

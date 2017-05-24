@@ -1,23 +1,12 @@
 {
   "testCases" : [ {
-    "uid" : "145ecb40926bb407",
+    "uid" : "15acb3a2ac461a43",
     "name" : "testGroupModification[GroupData{id='2147483647', name='test 0'}]",
     "title" : "Test group modification [GroupData{id='2147483647', name='test 0'}]",
     "time" : {
-      "start" : 1495028525384,
-      "stop" : 1495028530569,
-      "duration" : 5185
-    },
-    "severity" : "NORMAL",
-    "status" : "BROKEN"
-  }, {
-    "uid" : "993f4791b6538428",
-    "name" : "testGroupModification[GroupData{id='2147483647', name='test 0'}]",
-    "title" : "Test group modification [GroupData{id='2147483647', name='test 0'}]",
-    "time" : {
-      "start" : 1495029552943,
-      "stop" : 1495029558269,
-      "duration" : 5326
+      "start" : 1495033302314,
+      "stop" : 1495033307496,
+      "duration" : 5182
     },
     "severity" : "NORMAL",
     "status" : "BROKEN"

@@ -1,46 +1,35 @@
 {
   "time" : {
-    "start" : 1495028525384,
-    "stop" : 1495029558269,
-    "duration" : 1032885
+    "start" : 1495033302314,
+    "stop" : 1495033307496,
+    "duration" : 5182
   },
   "testSuites" : [ {
-    "uid" : "3ab3d7b1a10f9d63",
+    "uid" : "9938f2d835e4b6a7",
     "name" : "Suite1",
     "title" : "Suite 1",
     "time" : {
-      "start" : 1495028525384,
-      "stop" : 1495029558269,
-      "duration" : 1032885
+      "start" : 1495033302314,
+      "stop" : 1495033307496,
+      "duration" : 5182
     },
     "statistic" : {
-      "total" : 2,
+      "total" : 1,
       "passed" : 0,
       "pending" : 0,
       "canceled" : 0,
       "failed" : 0,
-      "broken" : 2
+      "broken" : 1
     },
     "description" : null,
     "testCases" : [ {
-      "uid" : "145ecb40926bb407",
+      "uid" : "15acb3a2ac461a43",
       "name" : "testGroupModification[GroupData{id='2147483647', name='test 0'}]",
       "title" : "Test group modification [GroupData{id='2147483647', name='test 0'}]",
       "time" : {
-        "start" : 1495028525384,
-        "stop" : 1495028530569,
-        "duration" : 5185
-      },
-      "severity" : "NORMAL",
-      "status" : "BROKEN"
-    }, {
-      "uid" : "993f4791b6538428",
-      "name" : "testGroupModification[GroupData{id='2147483647', name='test 0'}]",
-      "title" : "Test group modification [GroupData{id='2147483647', name='test 0'}]",
-      "time" : {
-        "start" : 1495029552943,
-        "stop" : 1495029558269,
-        "duration" : 5326
+        "start" : 1495033302314,
+        "stop" : 1495033307496,
+        "duration" : 5182
       },
       "severity" : "NORMAL",
       "status" : "BROKEN"

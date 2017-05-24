@@ -18,8 +18,14 @@ public class BaseHelper {
 
   protected void type(By locator, String text) {
     click(locator);
+    //проверяем, если в переменной хранится ссылка на объект, т.е. там не null (что-то хранится)
     if (text != null) {
+      //тогда извлекаем из поля то значение, которое в нем хранится
+      //по правилам вебприложения, тот текст, который мы видим в поле ввода, является значением атрибута value
+      //обычный метод getText всегда возвращает пустую строчку
+      //для всех остальных аргументов, кроме полей ввода нужно использовать метод getText
       String existingText = wd.findElement(locator).getAttribute("value");
+      //если текст не совпадает с существующим текстом, тогда выполняем какие-то действия с полем ввода
       if (!text.equals(existingText)) {
         wd.findElement(locator).clear();
         wd.findElement(locator).sendKeys(text);
@@ -33,10 +39,13 @@ public class BaseHelper {
     }
   }
 
+  //метод позволяет проверить наличие диалогового окна, которое иногда возникает на страницах вебприложений
   public boolean isAlertPresent() {
     try {
+      //пытемся переключиться на это диалоговое окно, если оно есть
       wd.switchTo().alert();
       return true;
+      //если его нет, то при попытке переключения возникает NoAlertPresentException
     } catch (NoAlertPresentException e) {
       return false;
     }
