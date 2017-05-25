@@ -32,11 +32,23 @@ public class ContactPhoneTests extends TestBase {
     Contacts contacts = appLocal.get().db().contacts();
     contact.withId(contacts.stream().mapToInt(ContactData::getId).max().getAsInt());
     ContactData contactInfoFromEditForm = appLocal.get().contact().infoFromEditForm(contact);
+    //используем метод обратных проверок - склеиваем телефоны, загруженные с главной страницы и сравниваем их
+    // со склеенными телефонами со страницы редактирования контакта
     assertThat(mergePhones(contact), equalTo(mergePhones(contactInfoFromEditForm)));
     verifyContactListInUI();
   }
 
   private String mergePhones(ContactData contact) {
+    //формируем из наших элементов колекцию, формируем список из 4х элементов, из которого нужно отсеить те, которые равны null
+    //остальные будем склеивать. ДЛя этого превращаем список в поток stream()
+    // , затем фильтруем поток(выбрасываем из него ненужные элементы)filter((s) - в качестве параметра передаем анонимную функцию
+    //которая на вход принимает строку (поскольку это поток, построенный из списка строк)
+    // и оставляем элементы, которые не равны пустой строке ! s.equals("")
+    //применяем ко всем элементам потока функцию, которая выполняет очистку
+    // с использованием функции map - ее назначение применить ко всем элементам какую-то функцию и вернуть поток,
+    // состоящий из результатов этой функции. Передаем функцию clean в качестве параметра в существующую функцию map
+    //затем склеиваем элементы потока в одну большую строку с помощью collect(Collectors.joining("\n")
+    // \n - это та строчка, которая будет вставляться между склеиваемыми фрагментами
     return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone(), contact.getHomePhone2())
             .stream().filter((s) -> ! s.equals("")).map(ContactPhoneTests::cleaned).collect(Collectors.joining("\n"));
   }

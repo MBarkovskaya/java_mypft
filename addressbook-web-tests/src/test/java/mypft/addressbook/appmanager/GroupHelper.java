@@ -74,6 +74,7 @@ public class GroupHelper extends BaseHelper {
   public void delete(GroupData group) {
     selectGroupById(group.getId());
     deleteSelectedGroups();
+    //нужно сбросить кэш, так как список групп поменялся
     groupCache = null;
     returnToGroupPage();
   }
@@ -88,17 +89,23 @@ public class GroupHelper extends BaseHelper {
 
   private Groups groupCache = null;
 
+  //метод all возвращает уже не множества, а объект типа Groups
   public Groups all() {
     if (groupCache !=null) {
+      //возвращаем не сам groupCache, а его копию, чтобы сам кэш никто не испортил
       return new Groups(groupCache);
     }
+    //если кэш не заполнен, нужно прочитать список групп со страницы веб-приложения
+    //инициализируем groupCache
     groupCache = new Groups();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for(WebElement element : elements) {
       String name = element.getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      //заполняем groupCache
       groupCache.add(new GroupData().withId(id).withName(name));
     }
+    //возвращаем копию groupCache
     return new Groups(groupCache);
   }
 

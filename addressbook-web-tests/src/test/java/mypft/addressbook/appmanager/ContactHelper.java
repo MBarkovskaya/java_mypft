@@ -24,6 +24,9 @@ public class ContactHelper extends BaseHelper {
     click(By.linkText("add new"));
   }
 
+  //дополнительный параметр creation будет говорить о том, создаем мы сейчас контакт или модифицируем
+  //creation true - значит это форма создания (там должен быть элемент для выбора группы
+  //creation false - значит это форма модификации (поля для выбора группы там быть не должно)
   public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstname());
     type(By.name("middlename"), contactData.getMiddlename());
@@ -42,12 +45,18 @@ public class ContactHelper extends BaseHelper {
     type(By.name("address2"), contactData.getAddress2());
     type(By.name("phone2"), contactData.getHomePhone2());
     attach(By.name("photo"), contactData.getPhoto());
+    //если это форма создания - значит этот элемент должен быть
     if (creation) {
       if (contactData.getGroups().size() > 0) {
         //т.к. на форме создания контакта можно выбрать только одну какую-нибудь группу, то в две разные группы мы добавить контакт не можем, поэтому проверяем условие
         Assert.assertTrue(contactData.getGroups().size() == 1);
+        //для того, чтобы выбрать элемент из выпадающего списка, используется вспомогательный класс Select, который находится в пакете selenium.support.ui
+        //в качестве параметра - указываем элемент, который найден на странице приложения
+        //
         new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
       }
+      //иначе мы находимся в форме модификации контакта и элемента там быть не должно
+      //если он там появился, значит тест должен упасть
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }

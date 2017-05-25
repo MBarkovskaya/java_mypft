@@ -55,12 +55,14 @@ public class ContactDetailsTests extends TestBase {
 
   private static String multiLineDetailsStringToString(String multiline) {
     if (multiline != null) {
+      //разрезаем multiline строку на фрагменты с помощью split() и в качестве разделителя использовать рег. выражение \n
       return Arrays.stream(multiline.split("\n")).filter(s -> !s.equals("")).map(ContactDetailsTests::cleaned).collect(Collectors.joining(";"));
     } else {
       return "";
     }
   }
 
+  //в регулярном выражении заменяем все - () и пробелы на пустую строку ""  с помощью метода replaceAll
   private static String cleaned(String str) {
     return str.replaceAll("[-()\\s]", "");
   }
